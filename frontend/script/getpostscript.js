@@ -1,14 +1,20 @@
 
 const allowed_severities=["low","medium","high"];
-const errorlist=[];
-const validlist=[];
+
 
 export async function postaskAiAsText(url,code){
    
-       const result = await axios.post(url, { code });
+       const result = await axios.post(url, { code:code });
+       console.log(result);
 try {
+       
        const [isgeneralvalid, message] = validateresponse(result);
-       if (!isgeneralvalid) return [false, null, null, message];
+       if (!isgeneralvalid)
+         {
+            console.log("get11")
+            return [false, null, null, message];
+            
+         }
 
             const errorlist = [];
             const validlist = [];
@@ -41,14 +47,17 @@ try {
 export function validateresponse(response){
   const contentType = response.headers["content-type"] || "";
   if (!contentType.includes("application/json")) {
+    console.log("valid1")
     return [false,"Response is not as expected"];
   }
 
   if(typeof response.data !="object"){
+    console.log("valid")
     return [false,"response is not data"];
   }
 
   if(!Array.isArray(response.data)){
+    console.log("valid2")
     return[false,"response is not array as expected"];
   }
   return [true,"ok"]
@@ -59,11 +68,11 @@ export function validateresponse(response){
 export function validateachitem(item,index){
     let itemvalide=true
     const itemerror=[];
-    if(item.error ){
+   /* if(item.error ){
         itemerror.push("the server error :",item.error);
 
         itemvalide=false;
-    }
+    }*/
     if(!item.severity || ! allowed_severities.includes(item.severity)){
         itemerror.push("the  error : missing expected severity ");
         itemvalide=false;
@@ -87,3 +96,5 @@ export function validateachitem(item,index){
 
 
 }
+
+

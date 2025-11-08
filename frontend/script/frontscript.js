@@ -1,4 +1,4 @@
-import { postaskAiAsText } from "./getpostscript.js";
+
 
 const txtinputcode = document.getElementById("txtinputcode");
 const btngo = document.getElementById("btngo");
@@ -20,7 +20,7 @@ async function handleclickbutton() {
   }
 
   const [isexecuted, validatelist, errorlist, message] = await postaskAiAsText(url, code);
-
+    console.log("is executed ",isexecuted);
   if (!isexecuted) {
     console.error("API error:", message);
     return;
@@ -92,3 +92,108 @@ function createtable(datalist, headlist, iserror) {
 
 
 btngo.addEventListener("click", handleclickbutton);
+
+
+const allowed_severities=["low","medium","high"];
+
+
+ async function postaskAiAsText(url,code){
+   try {    
+       const result = await axios.post(url, { code:code },{headers: {
+            "Content-Type": "application/json",
+          }});
+       console.log("kakka")
+       console.log(result);
+
+       
+       const [isgeneralvalid, message] = validateresponse(result);
+       if (!isgeneralvalid)
+         {
+            console.log("get11")
+            return [false, null, null, message];
+            
+         }
+
+            const errorlist = [];
+            const validlist = [];
+
+        result.data.forEach((item, index) => {
+        const [isvalid, res] = validateachitem(item, index);
+        if (isvalid) validlist.push(res);
+        else errorlist.push(res);
+  });
+
+  return [true, validlist, errorlist, null];
+} catch (error) {
+    console.log("jdbfeywyegfuygowegdf")
+  return [false, null, null, error.message];
+}
+
+        
+   
+    
+}
+// export async function postaskAiFile(file,url){
+//     const formdata=new FormData();
+//     formdata.append("file",file)
+//     const response=await axios.post(url,formdata,{
+//         header:{
+//             "content-Type":"multiple/form-data"
+//         }
+//     })
+// }
+
+ function validateresponse(response){
+  const contentType = response.headers["content-type"] || "";
+  if (!contentType.includes("application/json")) {
+    console.log("valid1")
+    return [false,"Response is not as expected"];
+  }
+
+  if(typeof response.data !="object"){
+    console.log("valid")
+    return [false,"response is not data"];
+  }
+
+  if(!Array.isArray(response.data)){
+    console.log("valid2")
+    return[false,"response is not array as expected"];
+  }
+  return [true,"ok"]
+
+
+
+}
+ function validateachitem(item,index){
+    let itemvalide=true
+    const itemerror=[];
+   /* if(item.error ){
+        itemerror.push("the server error :",item.error);
+
+        itemvalide=false;
+    }*/
+    if(!item.severity || ! allowed_severities.includes(item.severity)){
+        itemerror.push("the  error : missing expected severity ");
+        itemvalide=false;
+    }
+    if(!item.issue || typeof item.issue !="string"){
+        itemerror.push("the  error : missing expected issue ");
+        itemvalide=false;
+    }
+   if(!item.suggestion || typeof item.suggestion !="string"){
+        itemerror.push("the error: missing expected suggestion ");
+        itemvalide=false;
+   }
+
+   if(itemvalide){
+     return [true,item];
+   }else
+   {
+     return [false,itemerror]
+   }
+
+
+
+}
+
+
