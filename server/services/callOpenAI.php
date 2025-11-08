@@ -1,5 +1,6 @@
 <?php 
 include '../config.php';
+
 $LOG_FILE = __DIR__ . '/../logs/openai_responses.log';
 
 function logMessage($message) {
@@ -7,7 +8,8 @@ function logMessage($message) {
     $timestamp = date('Y-m-d H:i:s');
     file_put_contents($LOG_FILE, "[$timestamp] $message\n", FILE_APPEND);
 }
-function requestOpenAi($instruction){
+
+function requestOpenAi($instruction){// call the openAI
     // generate request
     $req = json_encode(
         array(
@@ -48,8 +50,7 @@ function requestOpenAi($instruction){
         return $res;
     } 
     else{
-        logMessage("HTTP ERROR: $error");
-        return json_encode(["error" => "HTTP ERROR" . $error]);;
+        return json_encode(["error" => "HTTP ERROR" . $error]);
     } 
 }
 
@@ -79,7 +80,7 @@ function validateStructure($response) {
 
     // if response is empty array, allow --> no errors
     if (count($response) === 0) {
-        return true;
+        return null;
     }
 
     // incase ai returns only one object wrap it in array for uniform processing
@@ -160,8 +161,7 @@ function reviewCode($code , $fileName = "no file" , $retry = 0 , $error = null ,
     
     $content = $responseData['choices'][0]['message']['content'];
     $parsedContent = json_decode($content , true);
-    logMessage("RAW RESPONSE: $content");
-
+    logMessage("RAW CONTENT: $content"); 
 
     // validate response
     $error = validateStructure($parsedContent);
