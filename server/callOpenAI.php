@@ -136,7 +136,7 @@ function reviewCode($code , $fileName = "no file" , $retry = 0 , $error = null ,
         $previousResponse
         The mistake you did was : 
         $error
-        Please obey the rules I gave you and retry.
+        Please take your time, obey the rules I gave you and retry.
         EOD;
     }
 
@@ -146,8 +146,8 @@ function reviewCode($code , $fileName = "no file" , $retry = 0 , $error = null ,
 
     // validate response
     $error = validateStructure($responseData);
-    if($error != null){// checks if response data is parsable to json and if error contains a string
-        $previousEncodedResponse = json_encode($responseData , JSON_UNESCAPED_UNICODE);// so AI can see response clearly
+    if($error != null){
+        $previousEncodedResponse = json_encode($responseData , JSON_UNESCAPED_UNICODE);// return to json so AI can see response clearly
         return reviewCode($code , $fileName , $retry + 1 , $error , $previousEncodedResponse);
     }else{// success
         // add file name if it exists
