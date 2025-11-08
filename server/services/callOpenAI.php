@@ -1,5 +1,5 @@
 <?php 
-include './config.php';
+include '../config.php';
 function requestOpenAi($instruction){
     // generate request
     $req = json_encode(
