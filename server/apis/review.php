@@ -3,7 +3,12 @@
 include "../services/handleRequestError.php";
 include "../services/callOpenAI.php";
 
+// what we need to do next : 
+// make sure that codes sent through files work fine
+// create Human to AI comparison -- 
+// move the response validation to the api as requested in the assignment cause my dumbass can't read
 // reveive data from client
+
 $data = json_decode(file_get_contents('php://input'), true);
 
 if(!isset($data["code"]) && !isset($_FILES["file"])){
