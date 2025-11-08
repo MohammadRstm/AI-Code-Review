@@ -2408,3 +2408,718 @@
     }
 ]
 [2025-11-08 19:39:13] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Potential typo","suggestion":"Check for typos and correct them"}]
+[2025-11-08 23:37:10] RAW RESPONSE: {
+  "id": "chatcmpl-CZlqRwcRSgeyojnV3lWQC95NMQ0LY",
+  "object": "chat.completion",
+  "created": 1762641431,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\n        \"severity\": \"medium\",\n        \"issue\": \"Potential security risk\",\n        \"suggestion\": \"Avoid sending sensitive data like API endpoints in plain text within the code\"\n    },\n    {\n        \"severity\": \"low\",\n        \"issue\": \"No error handling\",\n        \"suggestion\": \"Consider adding error handling to deal with potential issues during the request\"\n    }\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 244,
+    "completion_tokens": 81,
+    "total_tokens": 325,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-08 23:37:10] RAW CONTENT: [
+    {
+        "severity": "medium",
+        "issue": "Potential security risk",
+        "suggestion": "Avoid sending sensitive data like API endpoints in plain text within the code"
+    },
+    {
+        "severity": "low",
+        "issue": "No error handling",
+        "suggestion": "Consider adding error handling to deal with potential issues during the request"
+    }
+]
+[2025-11-08 23:37:10] SUCCESSFUL REVIEW: [{"severity":"medium","issue":"Potential security risk","suggestion":"Avoid sending sensitive data like API endpoints in plain text within the code"},{"severity":"low","issue":"No error handling","suggestion":"Consider adding error handling to deal with potential issues during the request"}]
+[2025-11-08 23:37:30] RAW RESPONSE: {
+  "id": "chatcmpl-CZlqlTplxJlkuiicppWx2dA6FPLkE",
+  "object": "chat.completion",
+  "created": 1762641451,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[{\"severity\": \"high\", \"issue\": \"Syntax Error\", \"suggestion\": \"Fix the syntax error in the code.\"}]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 28,
+    "total_tokens": 138,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-08 23:37:30] RAW CONTENT: [{"severity": "high", "issue": "Syntax Error", "suggestion": "Fix the syntax error in the code."}]
+[2025-11-08 23:37:30] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code."}]
+[2025-11-08 23:42:24] RAW RESPONSE: {
+  "id": "chatcmpl-CZlvVyHFyQ8K3mzkxWA6S1lr7K52B",
+  "object": "chat.completion",
+  "created": 1762641745,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\"severity\": \"high\", \"issue\": \"Syntax Error\", \"suggestion\": \"Fix the syntax error in the code.\"},\n    {\"severity\": \"low\", \"issue\": \"Incomplete code\", \"suggestion\": \"Complete the code snippet with proper content.\"}\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 57,
+    "total_tokens": 167,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-08 23:42:24] RAW CONTENT: [
+    {"severity": "high", "issue": "Syntax Error", "suggestion": "Fix the syntax error in the code."},
+    {"severity": "low", "issue": "Incomplete code", "suggestion": "Complete the code snippet with proper content."}
+]
+[2025-11-08 23:42:24] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code."},{"severity":"low","issue":"Incomplete code","suggestion":"Complete the code snippet with proper content."}]
+[2025-11-08 23:55:12] RAW RESPONSE: {
+  "id": "chatcmpl-CZm7t0NyjifV9P64V580KdyZjvThj",
+  "object": "chat.completion",
+  "created": 1762642513,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\r\n    {\r\n        \"severity\": \"high\",\r\n        \"issue\": \"Syntax error\",\r\n        \"suggestion\": \"Fix the syntax error in the code snippet.\"\r\n    }\r\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 37,
+    "total_tokens": 147,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-08 23:55:12] RAW CONTENT: [
+    {
+        "severity": "high",
+        "issue": "Syntax error",
+        "suggestion": "Fix the syntax error in the code snippet."
+    }
+]
+[2025-11-08 23:55:12] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax error","suggestion":"Fix the syntax error in the code snippet."}]
+[2025-11-08 23:55:13] RAW RESPONSE: {
+  "id": "chatcmpl-CZm7tgHKZIBeDPW7Har9ZNkQ9pHy6",
+  "object": "chat.completion",
+  "created": 1762642513,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\r\n    {\r\n        \"severity\": \"high\",\r\n        \"issue\": \"Syntax Error\",\r\n        \"suggestion\": \"Fix the syntax error in the code.\"\r\n    }\r\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 36,
+    "total_tokens": 146,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-08 23:55:13] RAW CONTENT: [
+    {
+        "severity": "high",
+        "issue": "Syntax Error",
+        "suggestion": "Fix the syntax error in the code."
+    }
+]
+[2025-11-08 23:55:13] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code."}]
+[2025-11-08 23:55:13] RAW RESPONSE: {
+  "id": "chatcmpl-CZm7uW74dhLsKCD8kC9xzJV3X9na1",
+  "object": "chat.completion",
+  "created": 1762642514,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\"severity\": \"high\", \"issue\": \"Syntax Error\", \"suggestion\": \"Fix the syntax error in the code.\"},\n    {\"severity\": \"low\", \"issue\": \"Incomplete code snippet\", \"suggestion\": \"Provide a complete code snippet for review.\"}\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 58,
+    "total_tokens": 168,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-08 23:55:13] RAW CONTENT: [
+    {"severity": "high", "issue": "Syntax Error", "suggestion": "Fix the syntax error in the code."},
+    {"severity": "low", "issue": "Incomplete code snippet", "suggestion": "Provide a complete code snippet for review."}
+]
+[2025-11-08 23:55:13] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code."},{"severity":"low","issue":"Incomplete code snippet","suggestion":"Provide a complete code snippet for review."}]
+[2025-11-08 23:55:13] RAW RESPONSE: {
+  "id": "chatcmpl-CZm7u0PZRkEEtvkGhoHsBSiSOpRSz",
+  "object": "chat.completion",
+  "created": 1762642514,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\"severity\": \"high\", \"issue\": \"Syntax Error\", \"suggestion\": \"Fix the syntax error in the code.\"},\n    {\"severity\": \"low\", \"issue\": \"Incomplete code\", \"suggestion\": \"Complete the code snippet with proper content.\"}\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 57,
+    "total_tokens": 167,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-08 23:55:13] RAW CONTENT: [
+    {"severity": "high", "issue": "Syntax Error", "suggestion": "Fix the syntax error in the code."},
+    {"severity": "low", "issue": "Incomplete code", "suggestion": "Complete the code snippet with proper content."}
+]
+[2025-11-08 23:55:13] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code."},{"severity":"low","issue":"Incomplete code","suggestion":"Complete the code snippet with proper content."}]
+[2025-11-08 23:55:14] RAW RESPONSE: {
+  "id": "chatcmpl-CZm7utTwzGy6wAPspRzjArXqTTVCw",
+  "object": "chat.completion",
+  "created": 1762642514,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\r\n    {\r\n        \"severity\": \"high\",\r\n        \"issue\": \"Syntax Error\",\r\n        \"suggestion\": \"Fix the syntax error in the code snippet.\"\r\n    }\r\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 37,
+    "total_tokens": 147,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-08 23:55:14] RAW CONTENT: [
+    {
+        "severity": "high",
+        "issue": "Syntax Error",
+        "suggestion": "Fix the syntax error in the code snippet."
+    }
+]
+[2025-11-08 23:55:14] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code snippet."}]
+[2025-11-08 23:55:14] RAW RESPONSE: {
+  "id": "chatcmpl-CZm7u1nVqSvBgLPqdNPYUdGvqflIi",
+  "object": "chat.completion",
+  "created": 1762642514,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\"severity\": \"high\", \"issue\": \"Syntax Error\", \"suggestion\": \"Fix the syntax error in the code.\"},\n    {\"severity\": \"low\", \"issue\": \"Incomplete code snippet\", \"suggestion\": \"Provide a complete code snippet for review.\"}\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 58,
+    "total_tokens": 168,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-08 23:55:14] RAW CONTENT: [
+    {"severity": "high", "issue": "Syntax Error", "suggestion": "Fix the syntax error in the code."},
+    {"severity": "low", "issue": "Incomplete code snippet", "suggestion": "Provide a complete code snippet for review."}
+]
+[2025-11-08 23:55:14] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code."},{"severity":"low","issue":"Incomplete code snippet","suggestion":"Provide a complete code snippet for review."}]
+[2025-11-08 23:55:14] RAW RESPONSE: {
+  "id": "chatcmpl-CZm7v3405nzni4HNZI3WDMhnJg9aR",
+  "object": "chat.completion",
+  "created": 1762642515,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[{\"severity\": \"high\", \"issue\": \"Syntax Error\", \"suggestion\": \"Fix the syntax error in the code.\"}]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 28,
+    "total_tokens": 138,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-08 23:55:14] RAW CONTENT: [{"severity": "high", "issue": "Syntax Error", "suggestion": "Fix the syntax error in the code."}]
+[2025-11-08 23:55:14] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code."}]
+[2025-11-08 23:55:24] RAW RESPONSE: {
+  "id": "chatcmpl-CZm852MsE3WRUeSufINUrufMdMHH4",
+  "object": "chat.completion",
+  "created": 1762642525,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\"severity\": \"low\", \"issue\": \"Incomplete code snippet\", \"suggestion\": \"Provide a complete code snippet for review.\"}\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 109,
+    "completion_tokens": 31,
+    "total_tokens": 140,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-08 23:55:24] RAW CONTENT: [
+    {"severity": "low", "issue": "Incomplete code snippet", "suggestion": "Provide a complete code snippet for review."}
+]
+[2025-11-08 23:55:24] SUCCESSFUL REVIEW: [{"severity":"low","issue":"Incomplete code snippet","suggestion":"Provide a complete code snippet for review."}]
+[2025-11-09 00:00:54] RAW RESPONSE: {
+  "id": "chatcmpl-CZmDPLUhZlESAv2JPB4fnU3Iq9gXE",
+  "object": "chat.completion",
+  "created": 1762642855,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[{\"severity\": \"high\", \"issue\": \"Syntax error\", \"suggestion\": \"Fix the syntax error in the code.\"}]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 111,
+    "completion_tokens": 28,
+    "total_tokens": 139,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-09 00:00:54] RAW CONTENT: [{"severity": "high", "issue": "Syntax error", "suggestion": "Fix the syntax error in the code."}]
+[2025-11-09 00:00:54] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax error","suggestion":"Fix the syntax error in the code."}]
+[2025-11-09 00:01:39] RAW RESPONSE: {
+  "id": "chatcmpl-CZmE7DK5M03N99kErfXAACwMC8atM",
+  "object": "chat.completion",
+  "created": 1762642899,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[{\"severity\": \"high\", \"issue\": \"Syntax Error\", \"suggestion\": \"Fix the syntax error in the code.\"}]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 28,
+    "total_tokens": 138,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-09 00:01:39] RAW CONTENT: [{"severity": "high", "issue": "Syntax Error", "suggestion": "Fix the syntax error in the code."}]
+[2025-11-09 00:01:39] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code."}]
+[2025-11-09 00:02:39] RAW RESPONSE: {
+  "id": "chatcmpl-CZmF56E9IlmJ1NPuEkBpGvnNSOKGE",
+  "object": "chat.completion",
+  "created": 1762642959,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\"severity\": \"high\", \"issue\": \"Syntax error\", \"suggestion\": \"Fix the syntax error in the code.\"},\n    {\"severity\": \"low\", \"issue\": \"Empty code snippet\", \"suggestion\": \"Provide a valid code snippet to review.\"}\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 58,
+    "total_tokens": 168,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-09 00:02:39] RAW CONTENT: [
+    {"severity": "high", "issue": "Syntax error", "suggestion": "Fix the syntax error in the code."},
+    {"severity": "low", "issue": "Empty code snippet", "suggestion": "Provide a valid code snippet to review."}
+]
+[2025-11-09 00:02:39] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax error","suggestion":"Fix the syntax error in the code."},{"severity":"low","issue":"Empty code snippet","suggestion":"Provide a valid code snippet to review."}]
+[2025-11-09 00:09:16] RAW RESPONSE: {
+  "id": "chatcmpl-CZmLUQnZ9FnIsDIVjGGVgObGWPoJH",
+  "object": "chat.completion",
+  "created": 1762643356,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\"severity\": \"high\", \"issue\": \"Syntax Error\", \"suggestion\": \"Fix the syntax error in the code.\"},\n    {\"severity\": \"low\", \"issue\": \"Unclear code purpose\", \"suggestion\": \"Add comments to explain the purpose of the code.\"}\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 61,
+    "total_tokens": 171,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-09 00:09:16] RAW CONTENT: [
+    {"severity": "high", "issue": "Syntax Error", "suggestion": "Fix the syntax error in the code."},
+    {"severity": "low", "issue": "Unclear code purpose", "suggestion": "Add comments to explain the purpose of the code."}
+]
+[2025-11-09 00:09:16] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code."},{"severity":"low","issue":"Unclear code purpose","suggestion":"Add comments to explain the purpose of the code."}]
+[2025-11-09 00:09:17] RAW RESPONSE: {
+  "id": "chatcmpl-CZmLWmJQMXZfGIo6GJo6SfmunjECK",
+  "object": "chat.completion",
+  "created": 1762643358,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[{\"severity\": \"high\", \"issue\": \"Syntax Error\", \"suggestion\": \"Fix the syntax error in the code.\"}]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 28,
+    "total_tokens": 138,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-09 00:09:17] RAW CONTENT: [{"severity": "high", "issue": "Syntax Error", "suggestion": "Fix the syntax error in the code."}]
+[2025-11-09 00:09:17] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code."}]
+[2025-11-09 00:09:44] RAW RESPONSE: {
+  "id": "chatcmpl-CZmLw2dG2WyuUsC9xI9OCLojB5stk",
+  "object": "chat.completion",
+  "created": 1762643384,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\"severity\": \"high\", \"issue\": \"Syntax Error\", \"suggestion\": \"Fix the syntax error in the code.\"},\n    {\"severity\": \"low\", \"issue\": \"Unclear code purpose\", \"suggestion\": \"Provide more context or comments to explain the purpose of the code.\"}\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 64,
+    "total_tokens": 174,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}
+
+[2025-11-09 00:09:44] RAW CONTENT: [
+    {"severity": "high", "issue": "Syntax Error", "suggestion": "Fix the syntax error in the code."},
+    {"severity": "low", "issue": "Unclear code purpose", "suggestion": "Provide more context or comments to explain the purpose of the code."}
+]
+[2025-11-09 00:09:44] SUCCESSFUL REVIEW: [{"severity":"high","issue":"Syntax Error","suggestion":"Fix the syntax error in the code."},{"severity":"low","issue":"Unclear code purpose","suggestion":"Provide more context or comments to explain the purpose of the code."}]

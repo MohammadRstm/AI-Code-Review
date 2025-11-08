@@ -3,19 +3,19 @@ const allowed_severities=["low","medium","high"];
 export async function postaskAiAsText(url,code){
   try {
     const result = await axios.post(url, { code });
-
+    console.log(result);
     // check response type
     const [isgeneralvalid, message] = validateresponse(result);
 
     if (!isgeneralvalid){
-      console.log("get11")
+      console.log("Response data structure validation failed");
       return [false, null, null, message];    
     }
 
     const errorList = [];// invalid objects sent from review api (correct structure)
     const validList = [];// valid objects sent from review api (correct structure)
 
-    result.data.forEach((item, index) => {
+    result.data.issues.forEach((item, index) => {
     const [isValid, res] = validateachitem(item, index);
 
     if (isValid) validList.push(res);
@@ -24,7 +24,8 @@ export async function postaskAiAsText(url,code){
   
   return [true, validList, errorList, null];
   }catch(error) {
-   console.log()
+    alert("Server error");
+    console.log(error);
   }
     
 }
@@ -39,51 +40,52 @@ export async function postaskAiAsText(url,code){
 //     })
 // }
 
-export function validateresponse(response){
+function validateresponse(response){
+  let valid = true;
+  let message = "";
 
   const contentType = response.headers["content-type"] || "";
-
-  const valid = true;
-  const message = "";
   if (!contentType.includes("application/json")) {
     valid = false;
-    message = "Response is not as expected";
+    message = "Response is not JSON";
   }
 
-  if(valid && typeof response.data !="object"){
+  if(valid && (!response.data && typeof response.data.issues !="object")){
     valid = false;
-    message = "response is not data";
+    message = "Response data is missing or invalid";
   }
 
-  if(valid && !Array.isArray(response.data)){
+  if(valid && (!"issues" in response.data || !"file" in response.data)){
     valid = false;
-    message = "response is not an array as exected"
+    message = "Response data is not valid";
   }
+
+  if (valid && !Array.isArray(response.data.issues)) {
+    valid = false;
+    message = "'issues' field is not an array.";
+    return [valid, message];
+  }
+
   return [valid,message];
 }
 
-export function validateachitem(item,index){
-    let itemValide=true
+function validateachitem(item,index){
     const itemError=[];
 
-    if(!item.severity || ! allowed_severities.includes(item.severity)){
-      itemError.push("the  error : missing expected severity field ");
-      itemValide=false;
+    if(!item.severity || !allowed_severities.includes(item.severity)){
+      itemError.push("Field Validation error : missing/invalid `severity` field");
     }
     if(!item.issue || typeof item.issue !="string"){
-        itemError.push("the  error : missing expected issue field");
-        itemValide=false;
+      itemError.push("Field Validation error : missing/invalid `issue` field");
     }
    if(!item.suggestion || typeof item.suggestion !="string"){
-        itemError.push("the error: missing expected suggestion field");
-        itemValide=false;
+      itemError.push("Field Validation error : missing/invalid `suggestion` field");
    }
 
-   if(itemValide){
-     return [true,item];
-   }else
-   {
-     return [false,itemError]
+   if(itemError.length == 0){
+    return [true,item];
+   }else{
+    return [false,itemError]
    }
 
 

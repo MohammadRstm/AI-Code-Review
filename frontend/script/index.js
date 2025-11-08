@@ -1,40 +1,36 @@
-const txtinputcode = document.getElementById("txtinputcode");
-const btngo = document.getElementById("btngo");
+const txtInputCodeElem = document.getElementById("txtInputCode");
+const btngo = document.getElementById("btnGo");
 
 // define sections to place tables
-const validtablesection = document.getElementById("validtablesection");
-const errortablesection = document.getElementById("errortablesection");
+const validTableSection = document.getElementById("validTableSection");
 
 const url = 'http://localhost/AI-Code-Review/server/apis/review.php';
 
-
-
 async function handleclickbutton() {
-  const code = txtinputcode.value.trim();
+  const code = txtInputCodeElem.value.trim();
 
   if (code.length === 0) {
-    console.log(" Please enter some code first!");
+    alert("Please provide either a file or a code snippet");
     return;
   }
 
-  const [isexecuted, validatelist, errorlist, message] = await postaskAiAsText(url, code);
-    console.log("is executed ",isexecuted);
+  const [isexecuted, validatelist, message] = await postaskAiAsText(url, code);
   if (!isexecuted) {
     console.error("API error:", message);
     return;
   }
 
 
-  validtablesection.innerHTML = "";
-  errortablesection.innerHTML = "";
+  validTableSection.innerHTML = "";
+  // errortablesection.innerHTML = "";
 
   if (validatelist.length > 0) {
     createtable(validatelist, ["Severity", "Issue", "Suggestion"], false);
   }
 
-  if (errorlist.length > 0) {
-    createtable(errorlist, ["Errors"], true);
-  }
+  // if (errorlist.length > 0) {
+  //   createtable(errorlist, ["Errors"], true);
+  // }
 }
 
 function createtable(datalist, headlist, iserror) {
@@ -84,7 +80,7 @@ function createtable(datalist, headlist, iserror) {
   if (iserror) {
     errortablesection.appendChild(table);
   } else {
-    validtablesection.appendChild(table);
+    validTableSection.appendChild(table);
   }
 }
 
@@ -104,8 +100,7 @@ const allowed_severities=["low","medium","high"];
       }});
       console.log(result);
 
-       
-       const [isgeneralvalid, message] = validateresponse(result);
+      const [isgeneralvalid, message] = validateresponse(result);
        if (!isgeneralvalid)
          {
             return [false, null, null, message];
@@ -115,7 +110,7 @@ const allowed_severities=["low","medium","high"];
             const errorlist = [];
             const validlist = [];
 
-        result.data.forEach((item, index) => {
+        result.data.issues.forEach((item, index) => {
         const [isvalid, res] = validateachitem(item, index);
         if (isvalid) validlist.push(res);
         else errorlist.push(res);
@@ -123,7 +118,7 @@ const allowed_severities=["low","medium","high"];
 
   return [true, validlist, errorlist, null];
 } catch (error) {
-    console.log("jdbfeywyegfuygowegdf")
+  console.log("Server error",error.message);
   return [false, null, null, error.message];
 }
 
@@ -153,8 +148,7 @@ const allowed_severities=["low","medium","high"];
     return [false,"response is not data"];
   }
 
-  if(!Array.isArray(response.data)){
-    console.log("valid2")
+  if(!Array.isArray(response.data.issues)){
     return[false,"response is not array as expected"];
   }
   return [true,"ok"]
