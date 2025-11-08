@@ -33,15 +33,14 @@ function requestOpenAi($instruction){
     ]);
     $res = curl_exec($ch);
     if(!$res){
-        $error =  "HTTP ERROR" . curl_error($ch);
+        $error = curl_error($ch);
     }
     curl_close($ch);
     if($res) return $res;
-    else echo $error;
+    else return json_encode(["error" => "HTTP ERROR" . $error]);;
 }
 
 function validateStructure($response) {
-
     /*
         we expect this output : 
         [
@@ -52,71 +51,104 @@ function validateStructure($response) {
             "file" : "file name"
         ]
     */
+    
+    $allowedSeverities = ["high", "medium", "low"];
 
-    // If response not an array, reject
-    if (!is_array($response)) {
-        return false;
+    if($response == null){
+        return "Response not parsable to JSON";
     }
 
-    // allow empty array as their maybe no issues
+    // must be an array/object 
+    if (!is_array($response)) {
+        return "Response is not an array or object";
+    }
+
+    // if response is empty array, allow --> no errors
     if (count($response) === 0) {
         return true;
     }
 
-    $allowedSeverities = ["high", "medium", "low"];
+    // incase ai returns only one object wrap it in array for uniform processing
+    if (isset($response['severity'])) {
+        $response = [$response];
+    }
 
-    // Check each item in the array
-    foreach ($response as $item) {
-        // check if its an array/object
+    foreach ($response as $index => $item) {
+        // must be an object
         if (!is_array($item)) {
-            return false;
+            return "Item at index $index is not an object";
         }
 
         // check required fields
         if (!isset($item['severity'], $item['issue'], $item['suggestion'])) {
-            return false;
+            return "Missing required fields in item at index $index , remember each item must contain severity , issue and suggestion fields";
         }
 
-        // validate severity value
+        // validate severity
         if (!in_array(strtolower($item['severity']), $allowedSeverities)) {
-            return false;
+            return "Invalid severity in item at index $index , remember sevirty can be one of these (high , medium , low)";
         }
 
-        // Extras : check types
+        // type checks
         if (!is_string($item['issue']) || !is_string($item['suggestion'])) {
-            return false;
+            return "Issue or suggestion is not a string in item at index $index";
         }
     }
-    // type check for file
-    if((isset($item['file']) && !is_string($item['file']))){
-        return false;
-    }
-    return true;
+
+    return null;// no errors
 }
 
 
-function reviewCode($code , $fileName = "no file" , $retry = 0){
+function reviewCode($code , $fileName = "no file" , $retry = 0 , $error = null , $previousResponse = null){
     // to avoid infinite recursion
     if($retry > 10) return ["error" => "Failed to receive correct structure from AI"];
     // generate instruction
-    $instruction = "You are strictly a code reviewer. I'm going to give you a code snippet. 
-    Read it carefully, find issues, and return an array of JSON object(s) with these exact fields:
-    severity, issue, suggestion.
+    if($retry == 0){// if on first try, give initial prompt
+        $instruction = <<<EOD
+        You are strictly a code reviewer. I'm going to give you a code snippet. 
+        Read it carefully, find issues, and return an array of JSON object(s) with these exact fields:
+        severity, issue, suggestion.
+    
+        Constraints:
+        - The issue and suggestion fields must not be too detailed, just an overall idea.
+        - The severity must be one of: 'high', 'medium', or 'low'.
+    
+        Code:
+        $code
+        Return only the array of JSON object(s), with no explanation or formatting.
+        EOD;
+    }else{// modify the instruction guiding the AI to the right output
+        $instruction = <<<EOD
+        I previously asked you to review my code and find issues in it, then return 
+        an array of JSON object(s) with these exact fields:
+        severity, issue , suggestion.
 
-    Constraints:
-    - The issue and suggestion fields must not be too detailed, just an overall idea.
-    - The severity must be one of: 'high', 'medium', or 'low'.
+        Constraints:
+        - The issue and suggestion fields must not be too detailed, just an overall idea.
+        - The severity must be one of: 'high', 'medium', or 'low'.
 
-    Code:
-    $code
-    Return only the array of JSOn object(s), with no explanation or formatting.
-    ";
+        Code :
+        $code
+        Only return the array of JSON object(s), with no explanation or formatting.
+
+        But you faild to deliver the right struture.
+        Your response was :
+        $previousResponse
+        The mistake you did was : 
+        $error
+        Please obey the rules I gave you and retry.
+        EOD;
+    }
+
     // call api
     $response = requestOpenAi($instruction);
     $responseData = json_decode($response , true);
 
-    if($responseData == null || !validateStructure($responseData)){
-        return reviewCode($code , $fileName , $retry + 1);
+    // validate response
+    $error = validateStructure($responseData);
+    if($error != null){// checks if response data is parsable to json and if error contains a string
+        $previousEncodedResponse = json_encode($responseData , JSON_UNESCAPED_UNICODE);// so AI can see response clearly
+        return reviewCode($code , $fileName , $retry + 1 , $error , $previousEncodedResponse);
     }else{// success
         // add file name if it exists
         if(strcmp($fileName , "no file") != 0){
