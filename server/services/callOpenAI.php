@@ -1,5 +1,12 @@
 <?php 
 include '../config.php';
+$LOG_FILE = __DIR__ . '/../logs/openai_responses.log';
+
+function logMessage($message) {
+    global $LOG_FILE;// tells the function to use the $LOG_FILE in the global scope declared above
+    $timestamp = date('Y-m-d H:i:s');
+    file_put_contents($LOG_FILE, "[$timestamp] $message\n", FILE_APPEND);
+}
 function requestOpenAi($instruction){
     // generate request
     $req = json_encode(
@@ -11,22 +18,21 @@ function requestOpenAi($instruction){
                     "content" => $instruction
                 )
                 ),
-                "temperature" => 1,
-                "max_tokens" => MAX_Tokens,
-                "top_p" => 1,
-                "frequency_penalty" => 0,
-                "presence_penalty" => 0
-            ),JSON_UNESCAPED_UNICODE
+                "temperature" => 0.3,// controls the model's randomness , since we are using it for code review we want it to be deterministic so set to 0.3, the .3 is to make it think of cleaner code suggestions(a bit creative)
+                "max_tokens" => MAX_Tokens,// number of tokens openai is allowed to use
+                "frequency_penalty" => 0.3,// this discourages the ai from repeating words, we don't need to worry about it here though 0.3 should suffice
+                "presence_penalty" => 0// this option allows openai to talk about new things, opening it for novelty. I don't want it to be a philosopher so 0 is perfect here 
+            ),JSON_UNESCAPED_UNICODE// optional(makes it so json encode accepts emojis and symbols) though we don't need it, I'm scared to touch this code
         );
     // call open AI
     $authorization = "Authorization: Bearer " . OPEN_AI_KEY;
     $ch = curl_init();
     curl_setopt($ch , CURLOPT_URL , "https://api.openai.com/v1/chat/completions");
-    curl_setopt($ch,CURLOPT_POST , true);
+    curl_setopt($ch,CURLOPT_POST , true);// can be removed since we are setting POSTFIELDS which emplies POST method usage
     curl_setopt($ch,CURLOPT_POSTFIELDS,$req);
-    curl_setopt($ch,CURLOPT_SSL_VERIFYHOST , 2);
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER , 1);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch,CURLOPT_SSL_VERIFYHOST , 2);// optional , used for security (verifying my SSL) but we don't need it since we are not deploying (2 means strict check)
+    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER , 1);// optional , same idea (verifying the SSL certificate)
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);// makes curl return res. as a string instead of printing it directly
     curl_setopt($ch , CURLOPT_HTTPHEADER , [
         'Content-Type: application/json',
         $authorization
@@ -34,15 +40,22 @@ function requestOpenAi($instruction){
     $res = curl_exec($ch);
     if(!$res){
         $error = curl_error($ch);
+        logMessage("CURL ERROR: $error");
     }
     curl_close($ch);
-    if($res) return $res;
-    else return json_encode(["error" => "HTTP ERROR" . $error]);;
+    if($res){
+        logMessage("RAW RESPONSE: $res");
+        return $res;
+    } 
+    else{
+        logMessage("HTTP ERROR: $error");
+        return json_encode(["error" => "HTTP ERROR" . $error]);;
+    } 
 }
 
 function validateStructure($response) {
     /*
-        we expect this output : 
+        we expect this output from the AI: 
         [
             {"severity":"sevirity 1","issue":"issue 1","suggestion":"suggestion 1"},
             {"severity":"sevirty 2","issue":"issue 2","suggestion":"suggestion 2"},
@@ -50,6 +63,7 @@ function validateStructure($response) {
             (optional)
             "file" : "file name"
         ]
+        In this function it should be decoded into an associtive array
     */
     
     $allowedSeverities = ["high", "medium", "low"];
@@ -101,7 +115,7 @@ function validateStructure($response) {
 
 function reviewCode($code , $fileName = "no file" , $retry = 0 , $error = null , $previousResponse = null){
     // to avoid infinite recursion
-    if($retry > 10) return ["error" => "Failed to receive correct structure from AI"];
+    if($retry > 4) return ["error" => "Failed to receive correct structure from AI"];
     // generate instruction
     if($retry == 0){// if on first try, give initial prompt
         $instruction = <<<EOD
@@ -143,18 +157,25 @@ function reviewCode($code , $fileName = "no file" , $retry = 0 , $error = null ,
     // call api
     $response = requestOpenAi($instruction);
     $responseData = json_decode($response , true);
+    
+    $content = $responseData['choices'][0]['message']['content'];
+    $parsedContent = json_decode($content , true);
+    logMessage("RAW RESPONSE: $content");
+
 
     // validate response
-    $error = validateStructure($responseData);
+    $error = validateStructure($parsedContent);
     if($error != null){
-        $previousEncodedResponse = json_encode($responseData , JSON_UNESCAPED_UNICODE);// return to json so AI can see response clearly
+        logMessage("VALIDATION ERROR: $error \n RESPONSE: " . json_encode($parsedContent));
+        $previousEncodedResponse = json_encode($parsedContent , JSON_UNESCAPED_UNICODE);// return to json so AI can see response clearly
         return reviewCode($code , $fileName , $retry + 1 , $error , $previousEncodedResponse);
     }else{// success
+        logMessage("SUCCESSFUL REVIEW: " . json_encode($parsedContent));
         // add file name if it exists
         if(strcmp($fileName , "no file") != 0){
-            $responseData["file"] = $fileName;  
+            $parsedContent["file"] = $fileName;  
         }
-        return $responseData;         
+        return $parsedContent;         
     }
 }
 

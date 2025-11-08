@@ -1,6 +1,4 @@
 <?php
-// Human to AI comparison
-
 // include error handling file
 include "../services/handleRequestError.php";
 include "../services/callOpenAI.php";
@@ -21,9 +19,11 @@ if(!isset($data["code"]) && !isset($_FILES["file"])){
     $response = reviewCode($code);
 }
 
+header('Content-Type: application/json');
+
 if(isset($response["error"])){
-    echo "FAIL : ". $response["error"];
+    echo json_encode(["error" => "FAILED TO REVIEW CODE : ". $response["error"]]);
 }else{
-    echo $response;
+    echo json_encode($response);
 }
 ?>
