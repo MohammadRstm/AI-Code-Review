@@ -1,41 +1,55 @@
-const txtInputCodeElem = document.getElementById("txtInputCode");
-const btngo = document.getElementById("btnGo");
+const txtInputCodeElem = document.getElementById("codeInput");
+const btngo = document.getElementById("submitBtn");
+const fileInput = document.getElementById("fileInput");
+const validTableSection = document.getElementById("resultTableContainer");
+const clearBtn = document.getElementById("clearBtn");
 
-// define sections to place tables
-const validTableSection = document.getElementById("validTableSection");
-
-const url = 'http://localhost/AI-Code-Review/server/apis/review.php';
+const url = "http://localhost:8080/AI-Code-Review/server/apis/review.php";
+const allowed_severities = ["low", "medium", "high"];
 
 async function handleclickbutton() {
-  const code = txtInputCodeElem.value.trim();
+  const text = txtInputCodeElem.value.trim();
+  const file = fileInput.files[0];
+  let istext = true;
 
-  if (code.length === 0) {
-    alert("Please provide either a file or a code snippet");
+  if (!text && !file) {
+    alert("Please enter code or select a file");
     return;
   }
 
-  const [isexecuted, validatelist, message] = await postaskAiAsText(url, code);
+  if (text && file) {
+    alert("Please enter only one input (text OR file)");
+    return;
+  }
+
+  if (file) istext = false;
+
+  const [isexecuted, validatelist, errorlist, message] = await initilCall(
+    url,
+    text,
+    file,
+    istext
+  );
+
   if (!isexecuted) {
     console.error("API error:", message);
     return;
   }
 
-
   validTableSection.innerHTML = "";
-  // errortablesection.innerHTML = "";
 
   if (validatelist.length > 0) {
     createtable(validatelist, ["Severity", "Issue", "Suggestion"], false);
   }
 
-  // if (errorlist.length > 0) {
-  //   createtable(errorlist, ["Errors"], true);
-  // }
+  if (errorlist.length > 0) {
+    createtable(errorlist, ["Errors"], true);
+  }
 }
 
 function createtable(datalist, headlist, iserror) {
   const table = document.createElement("table");
-  table.className = "tableerror";
+  table.className = "table";
 
 
   const thead = document.createElement("thead");
@@ -55,137 +69,137 @@ function createtable(datalist, headlist, iserror) {
     const row = document.createElement("tr");
 
     
-    if (Array.isArray(data)) {
-      data.forEach(value => {
-        const td = document.createElement("td");
-        td.textContent = value;
-        row.appendChild(td);
-      });
-    } 
- 
-    else if (typeof data === "object") {
       const cells = [data.severity, data.issue, data.suggestion];
       cells.forEach(value => {
         const td = document.createElement("td");
         td.textContent = value || "";
         row.appendChild(td);
       });
-    }
+    
 
     tbody.appendChild(row);
   });
 
   table.appendChild(tbody);
 
-  if (iserror) {
-    errortablesection.appendChild(table);
-  } else {
+
     validTableSection.appendChild(table);
-  }
+  
 }
+txtInputCodeElem.addEventListener("input", () => {
+  fileInput.disabled = txtInputCodeElem.value.trim().length > 0;
+});
 
-
+fileInput.addEventListener("change", () => {
+  txtInputCodeElem.disabled = fileInput.files.length > 0;
+})
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 btngo.addEventListener("click", handleclickbutton);
 
+clearBtn.addEventListener("click", () => {
+  txtInputCodeElem.value = "";
+  fileInput.value = "";
+  validTableSection.innerHTML = "";
+  fileInput.disabled = false;
+  txtInputCodeElem.disabled = false;
+});
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+async function initilCall(url, code, file, istext) {
+  try {
+    let result = null;
+    let isCorrectResponse = true;
+    let errorList = [];
+    let validateList = [];
 
-const allowed_severities=["low","medium","high"];
+    if (istext) {
+      result = await PostText(url, code);
+    } else {
+      result = await PostFile(url, file);
+    }
 
+    const [isGeneralValid, message] = validateResponse(result);
+    if (!isGeneralValid)
+      return [!isCorrectResponse, errorList, validateList, message];
 
- async function postaskAiAsText(url,code){
-   try {    
-      const result = await axios.post(url, { code },
-      {
-        headers: {
-          "Content-Type": "application/json",
-      }});
-      console.log(result);
+    result.data.issues.forEach((item, index) => {
+      const [isvalid, res] = validatEachItem(item, index);
+      if (isvalid) validateList.push(res);
+      else errorList.push(res);
+    });
 
-      const [isgeneralvalid, message] = validateresponse(result);
-       if (!isgeneralvalid)
-         {
-            return [false, null, null, message];
-            
-         }
-
-            const errorlist = [];
-            const validlist = [];
-
-        result.data.issues.forEach((item, index) => {
-        const [isvalid, res] = validateachitem(item, index);
-        if (isvalid) validlist.push(res);
-        else errorlist.push(res);
-  });
-
-  return [true, validlist, errorlist, null];
-} catch (error) {
-  console.log("Server error",error.message);
-  return [false, null, null, error.message];
+    return [true, validateList, errorList, null];
+  } catch (error) {
+    return [false, null, null, error.message];
+  }
 }
 
-        
-   
-    
+async function PostText(url, code) {
+  try {
+    const result = await axios.post(url, { code });
+    return result;
+  } catch (error) {
+    return { error: error.message };
+  }
 }
-// export async function postaskAiFile(file,url){
-//     const formdata=new FormData();
-//     formdata.append("file",file)
-//     const response=await axios.post(url,formdata,{
-//         header:{
-//             "content-Type":"multiple/form-data"
-//         }
-//     })
-// }
 
- function validateresponse(response){
+async function PostFile(url, file) {
+  try {
+    const formdata = new FormData();
+    formdata.append("file", file);
+    const response = await axios.post(url, formdata, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response;
+  } catch (error) {
+    return { error: error.message };
+  }
+}
+
+function validateResponse(response) {
+  let isValid = true;
+  let message = "";
+
+  if (!response || response.error) {
+    return [false, response?.error || "Unknown error"];
+  }
+
   const contentType = response.headers["content-type"] || "";
+
   if (!contentType.includes("application/json")) {
-    console.log("valid1")
-    return [false,"Response is not as expected"];
+    isValid = false;
+    message = "Response is not JSON";
+  } else if (typeof response.data !== "object") {
+    isValid = false;
+    message = "Response data is not an object";
+  } else if (!Array.isArray(response.data.issues)) {
+    isValid = false;
+    message = "Response data.issues is not an array";
+  } else if (response.data.error) {
+    isValid = false;
+    message = "Server returned an error";
   }
 
-  if(typeof response.data !="object"){
-    console.log("valid")
-    return [false,"response is not data"];
-  }
-
-  if(!Array.isArray(response.data.issues)){
-    return[false,"response is not array as expected"];
-  }
-  return [true,"ok"]
-
-
-
-}
- function validateachitem(item,index){
-    let itemvalide=true
-    const itemerror=[];
-   /* if(item.error ){
-        itemerror.push("the server error :",item.error);
-
-        itemvalide=false;
-    }*/
-    if(!item.severity || ! allowed_severities.includes(item.severity)){
-        itemerror.push("the  error : missing expected severity ");
-        itemvalide=false;
-    }
-    if(!item.issue || typeof item.issue !="string"){
-        itemerror.push("the  error : missing expected issue ");
-        itemvalide=false;
-    }
-   if(!item.suggestion || typeof item.suggestion !="string"){
-        itemerror.push("the error: missing expected suggestion ");
-        itemvalide=false;
-   }
-
-   if(itemvalide){
-     return [true,item];
-   }else
-   {
-     return [false,itemerror]
-   }
-
-
-
+  return [isValid, message];
 }
 
+function validatEachItem(item, index) {
+  let itemValide = true;
+  const itemError = [];
 
+  if (!item.severity || !allowed_severities.includes(item.severity)) {
+    itemError.push("Missing expected severity");
+    itemValide = false;
+  }
+  if (!item.issue || typeof item.issue != "string") {
+    itemError.push("Missing expected issue");
+    itemValide = false;
+  }
+  if (!item.suggestion || typeof item.suggestion != "string") {
+    itemError.push("Missing expected suggestion");
+    itemValide = false;
+  }
+
+  return itemValide ? [true, item] : [false, itemError.join(", ")];
+}
