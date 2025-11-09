@@ -1,50 +1,6 @@
-<?php 
-include '../config.php';
-include_once "../utils/logMessage.php";
-function requestOpenAi($instruction){// call the openAI
-    // generate request
-    $req = json_encode(
-        array(
-            "model" => GPT_VER,
-            "messages" => array(
-                array(
-                    "role" => "system",
-                    "content" => $instruction
-                )
-                ),
-                "temperature" => 0.3,// controls the model's randomness , since we are using it for code review we want it to be deterministic so set to 0.3, the .3 is to make it think of cleaner code suggestions(a bit creative)
-                "max_tokens" => MAX_Tokens,// number of tokens openai is allowed to use
-                "frequency_penalty" => 0.3,// this discourages the ai from repeating words, we don't need to worry about it here though 0.3 should suffice
-                "presence_penalty" => 0// this option allows openai to talk about new things, opening it for novelty. I don't want it to be a philosopher so 0 is perfect here 
-            ),JSON_UNESCAPED_UNICODE// optional(makes it so json encode accepts emojis and symbols) though we don't need it, I'm scared to touch this code
-        );
-    // call open AI
-    $authorization = "Authorization: Bearer " . OPEN_AI_KEY;
-    $ch = curl_init();
-    curl_setopt($ch , CURLOPT_URL , "https://api.openai.com/v1/chat/completions");
-    curl_setopt($ch,CURLOPT_POST , true);// can be removed since we are setting POSTFIELDS which emplies POST method usage
-    curl_setopt($ch,CURLOPT_POSTFIELDS,$req);
-    curl_setopt($ch,CURLOPT_SSL_VERIFYHOST , 2);// optional , used for security (verifying my SSL) but we don't need it since we are not deploying (2 means strict check)
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER , 1);// optional , same idea (verifying the SSL certificate)
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);// makes curl return res. as a string instead of printing it directly
-    curl_setopt($ch , CURLOPT_HTTPHEADER , [
-        'Content-Type: application/json',
-        $authorization
-    ]);
-    $res = curl_exec($ch);
-    if(!$res){
-        $error = curl_error($ch);
-        logMessage("CURL ERROR: $error");
-    }
-    curl_close($ch);
-    if($res){
-        logMessage("RAW RESPONSE: $res");
-        return $res;
-    } 
-    else{
-        return json_encode(["error" => "HTTP ERROR" . $error]);
-    } 
-}
+<?php
+
+include_once "./callOpenAI.php";
 
 function validateStructure($response) {
     /*
@@ -102,8 +58,6 @@ function validateStructure($response) {
 
     return null;// no errors
 }
-
-
 function reviewCode($code , $retry = 0 , $error = null , $previousResponse = null){
     // to avoid infinite recursion
     if($retry > 4) return ["error" => "Failed to receive correct structure from AI"];
@@ -164,36 +118,4 @@ function reviewCode($code , $retry = 0 , $error = null , $previousResponse = nul
         return $parsedContent;         
     }
 }
-
-function generateCode($language){
-    $instruction = <<<EOD
-    I want you to give me a code snippet of the $language language
-    I want the code to contain some error(s)
-    The errors can be:
-    -logical ones
-    -Syntax errors
-    -messy code (could be cleaner)
-
-    The structure you should give me is a json object with the code attribute only, its value is the actual code
-    so something like this
-    {
-        "code" : "...actual code..."
-    }
-    I only want you to give me the json object directly with no extra explanation or formatting
-    just the block of code
-    EOD;
-
-    $results = requestOpenAi($instruction);
-    $content = json_decode((json_decode($results , true))["choices"][0]["message"]["content"] , true);
-    logMessage("RAW CONTENT : $content");
-    if(validateCodeGeneration(json_decode($content))){
-        return $content;
-    }else{
-        return null;
-    }
-}
-
-
-
-
 ?>

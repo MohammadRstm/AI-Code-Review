@@ -1,8 +1,7 @@
 <?php
-
 include "../utils/headers.php";
 include "../database/connection.php";
-include "../services/handleRequestError.php";
+include "../utils/handleRequestError.php";
 
 $data = json_decode(file_get_contents('php://input'), true);
 
@@ -23,8 +22,9 @@ foreach($data["humanReview"] as $review){
     $sql = "INSERT INTO humanReviews(code_id , sevirity , issue , suggestion) VALUES(?, ? , ? , ?)";
     $query = $conn->prepare($sql);
     $query->bind_param("isss" ,$code_id,$review["sevirity"],$review["issue"],$review["suggestion"]);
+    $query->execute();
 }
 
-
-
+$query->close();
+$conn->close();
 ?>

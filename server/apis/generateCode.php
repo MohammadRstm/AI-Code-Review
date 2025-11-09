@@ -1,6 +1,6 @@
 <?php
     include "../utils/headers.php";
-    include "../services/callOpenAI.php";
+    include "../services/aiServices/autoCodeGeneration.php";
     include "../config.php";
 
     $currentLanguage = mt_rand(0,count($languages) - 1); 
