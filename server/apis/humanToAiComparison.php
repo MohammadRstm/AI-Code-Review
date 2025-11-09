@@ -13,7 +13,7 @@ if(!isset($data["code"]) || !isset($data["aiReview"])){
 }
 
 // we are going to ask openai if the code given by the user matches any of our cases saved in the db
-// for now we'll give the ai all the codes we currently have in out db
+// for now we'll give the ai all the codes we currently have in our db -> incredibly insecure & inefficient
 // the open ai must return the id of the code it thinks matches this case , then we join to get human reviews
 $sql = 'SELECT * FROM codes';
 $query = $conn->prepare($sql);

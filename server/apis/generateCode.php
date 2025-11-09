@@ -1,9 +1,9 @@
 <?php
     include "../utils/headers.php";
     include "../services/aiServices/autoCodeGeneration.php";
-    include "../config.php";
+    include_once "../config.php";
 
-    $currentLanguage = mt_rand(0,count($languages) - 1); 
+    $currentLanguage = mt_rand(0,count(LANGAUGES) - 1); 
     $code = generateCode(LANGAUGES[$currentLanguage]);
     if($code){
         echo json_encode($code);

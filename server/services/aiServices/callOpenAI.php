@@ -1,6 +1,6 @@
 <?php 
-include '../../config.php';
-include_once "../../utils/logMessage.php";
+include_once __DIR__ . "/../../config.php";
+include_once __DIR__ . "/../../utils/logMessage.php";
 function requestOpenAi($instruction){// call the openAI
     // generate request
     $req = json_encode(
@@ -19,6 +19,7 @@ function requestOpenAi($instruction){// call the openAI
             ),JSON_UNESCAPED_UNICODE// optional(makes it so json encode accepts emojis and symbols) though we don't need it, I'm scared to touch this code
         );
     // call open AI
+    logMessage("API KEY : " . OPEN_AI_KEY);
     $authorization = "Authorization: Bearer " . OPEN_AI_KEY;
     $ch = curl_init();
     curl_setopt($ch , CURLOPT_URL , "https://api.openai.com/v1/chat/completions");

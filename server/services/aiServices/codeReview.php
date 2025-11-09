@@ -1,6 +1,5 @@
 <?php
-
-include_once "./callOpenAI.php";
+include_once __DIR__."/callOpenAI.php";
 
 function validateStructure($response) {
     /*

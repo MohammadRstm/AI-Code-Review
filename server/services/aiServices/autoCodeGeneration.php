@@ -1,5 +1,5 @@
 <?php
-include_once "./callOpenAI.php";
+include_once __DIR__."/callOpenAI.php";
 
 function validateCodeGeneration($content){
     if(!is_array($content)){
@@ -34,9 +34,12 @@ function generateCode($language){
     EOD;
 
     $results = requestOpenAi($instruction);
-    $content = json_decode((json_decode($results , true))["choices"][0]["message"]["content"] , true);
-    logMessage("RAW CONTENT : $content");
-    if(validateCodeGeneration(json_decode($content))){
+    $decodedResults = json_decode($results, true);
+    $contentString = $decodedResults["choices"][0]["message"]["content"];
+    // Decode the content string (which is JSON)
+    $content = json_decode($contentString, true);
+    logMessage("RAW CODE GENERATION CONTENT : " . print_r($content, true));
+    if(validateCodeGeneration($content)){
         return $content;
     }else{
         return null;

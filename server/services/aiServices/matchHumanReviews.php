@@ -1,5 +1,5 @@
 <?php
-include_once "./callOpenAI.php";
+include_once __DIR__."/callOpenAI.php";
 function validIdResult($content){
     if(!is_array($content)){
         return false;
@@ -36,10 +36,14 @@ function matchCodeToCase($code , $savedCases){
     }
     EOD;
 
-    $result = requestOpenAi($instruction);
-    $content = json_decode((json_decode($result , true))["choices"][0]["message"]["content"] , true);
-    if($result && validIdResult($content)){
-        return $result;
+    $results = requestOpenAi($instruction);
+    $decodedResults = json_decode($results, true);
+    $contentString = $decodedResults["choices"][0]["message"]["content"];
+    // Decode the content string (which is JSON)
+    $content = json_decode($contentString, true);
+    logMessage("RAW Human Review CONTENT : " . print_r($content, true));
+    if($content && validIdResult($content)){
+        return $content;
     }else{
         return null;// ai failed to find a match
     }
