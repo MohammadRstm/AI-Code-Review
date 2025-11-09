@@ -1,6 +1,3 @@
-// ============================
-// Test Cases
-// ============================
 const testCodes = [
   {
     title: "Small Python code with many syntax and logic errors",
@@ -198,9 +195,6 @@ public class Calculator {
 
 const BASE_URL = "http://localhost:8080/AI-Code-Review/server/apis";
 
-// ============================
-// Test Class
-// ============================
 class TestAiReviewer {
   async apiCall(code) {
     try {
