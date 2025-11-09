@@ -3,7 +3,6 @@ const allowed_severities=["low","medium","high"];
 export async function postaskAiAsText(url,code){
   try {
     const result = await axios.post(url, { code });
-    console.log(result);
     // check response type
     const [isgeneralvalid, message] = validateresponse(result);
 
