@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Reviewer</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+    <div class="top">
+        <a  class="t0" href="index.html">OpenAI</a>
+    </div>
+    <div class="vv" id="top">
+        <textarea type="text" class="txt-input-code" id="txtInputCode" placeholder="Paste your code here"></textarea>
+        <button class="btn-go" id="btnGo" >test code</button>
+        <div id="validTableSection" class="valid-table-section">
+            <!-- AI RESPONSE -->
+        </div>
+    </div>
+
+  
+    <script src="./script/axios.min.js"></script>
+    <script src="./script/getpostscript.js" type="module"></script>
+    <script src="./script/index.js" type="module"></script>
+</body>
+</html>

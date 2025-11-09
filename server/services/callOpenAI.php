@@ -1,13 +1,7 @@
 <?php 
 include '../config.php';
-$LOG_FILE = __DIR__ . '/../logs/openai_responses.log';
-
-function logMessage($message) {
-    global $LOG_FILE;// tells the function to use the $LOG_FILE in the global scope declared above
-    $timestamp = date('Y-m-d H:i:s');
-    file_put_contents($LOG_FILE, "[$timestamp] $message\n", FILE_APPEND);
-}
-function requestOpenAi($instruction){
+include_once "../utils/logMessage.php";
+function requestOpenAi($instruction){// call the openAI
     // generate request
     $req = json_encode(
         array(
@@ -48,8 +42,7 @@ function requestOpenAi($instruction){
         return $res;
     } 
     else{
-        logMessage("HTTP ERROR: $error");
-        return json_encode(["error" => "HTTP ERROR" . $error]);;
+        return json_encode(["error" => "HTTP ERROR" . $error]);
     } 
 }
 
@@ -66,8 +59,6 @@ function validateStructure($response) {
         In this function it should be decoded into an associtive array
     */
     
-    $allowedSeverities = ["high", "medium", "low"];
-
     if($response == null){
         return "Response not parsable to JSON";
     }
@@ -79,7 +70,7 @@ function validateStructure($response) {
 
     // if response is empty array, allow --> no errors
     if (count($response) === 0) {
-        return true;
+        return null;
     }
 
     // incase ai returns only one object wrap it in array for uniform processing
@@ -99,7 +90,7 @@ function validateStructure($response) {
         }
 
         // validate severity
-        if (!in_array(strtolower($item['severity']), $allowedSeverities)) {
+        if (!in_array(strtolower($item['severity']), ALLOWED_SEVERITIES)) {
             return "Invalid severity in item at index $index , remember sevirty can be one of these (high , medium , low)";
         }
 
@@ -113,7 +104,7 @@ function validateStructure($response) {
 }
 
 
-function reviewCode($code , $fileName = "no file" , $retry = 0 , $error = null , $previousResponse = null){
+function reviewCode($code , $retry = 0 , $error = null , $previousResponse = null){
     // to avoid infinite recursion
     if($retry > 4) return ["error" => "Failed to receive correct structure from AI"];
     // generate instruction
@@ -160,21 +151,16 @@ function reviewCode($code , $fileName = "no file" , $retry = 0 , $error = null ,
     
     $content = $responseData['choices'][0]['message']['content'];
     $parsedContent = json_decode($content , true);
-    logMessage("RAW RESPONSE: $content");
-
+    logMessage("RAW CONTENT: $content"); 
 
     // validate response
     $error = validateStructure($parsedContent);
     if($error != null){
         logMessage("VALIDATION ERROR: $error \n RESPONSE: " . json_encode($parsedContent));
         $previousEncodedResponse = json_encode($parsedContent , JSON_UNESCAPED_UNICODE);// return to json so AI can see response clearly
-        return reviewCode($code , $fileName , $retry + 1 , $error , $previousEncodedResponse);
+        return reviewCode($code ,  $retry + 1 , $error , $previousEncodedResponse);
     }else{// success
         logMessage("SUCCESSFUL REVIEW: " . json_encode($parsedContent));
-        // add file name if it exists
-        if(strcmp($fileName , "no file") != 0){
-            $parsedContent["file"] = $fileName;  
-        }
         return $parsedContent;         
     }
 }
