@@ -1,140 +1,45 @@
- <html>
-  
-  <body>
-<section class="ai-review-section">
-  <h2>Submit Code or File for Review</h2>
-  
-  <!-- Text input -->
-  <textarea id="codeInput" placeholder="Paste your code or text here..." rows="8"></textarea>
-  
-  <div class="divider">OR</div>
-  
-  <!-- File input -->
-  <input type="file" id="fileInput" accept=".txt,.js,.php,.py,.java"/>
-  
-  <!-- Submit button -->
-   <div class="btns">
-  <button id="submitBtn" class="btn">Submit</button>
-  <button id="clearBtn" class="btn">clear</button>
-  </div>
-  <!-- Table container for results built by JS -->
-  <div id="resultTableContainer"></div>
-</section>
-<script src="./script/axios.min.js"></script>
-    <script src="./script/index.js" type="module"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/styles.css"/>
+  <link rel="stylesheet" href="./styles/index.css"/>
+  <title>AI Code Reviewer</title>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html">AI Code Reviewer</a>
+      </div>
+      <nav class="header-nav">
+        <a href="humanReview.html">Human Review</a>
+        <a href="Testing.html">Ai-Tester</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="ai-review-section">
+    <h2>Submit Code or File for Review</h2>
     
-  </body>
-<!-- ======================= Styles ======================= -->
-<style>
-.btns{
-  display: flex;
-  position: relative;
-  left:20%;
+    <textarea id="codeInput" placeholder="Paste your code or text here..." rows="8"></textarea>
     
-}
-.ai-review-section {
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 25px;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
-}
+    <div class="divider">OR</div>
 
-.ai-review-section h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
-}
+    <!-- Buttons + File Input Container -->
+    <div class="input-actions">
+      <input type="file" id="fileInput" accept=".txt,.js,.php,.py,.java"/>
+      <div class="btns">
+        <button id="submitBtn" class="btn">Submit</button>
+        <button id="clearBtn" class="btn">Clear</button>
+      </div>
+    </div>
 
-#codeInput {
-  width: 100%;
-  padding: 12px;
-  font-family: monospace;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  resize: vertical;
-  box-sizing: border-box;
-}
+    <div id="resultTableContainer"></div>
+  </section>
 
-.divider {
-  text-align: center;
-  margin: 15px 0;
-  font-weight: bold;
-  color: #666;
-}
-
-#fileInput {
-  display: block;
-  margin: 0 auto 20px auto;
-  font-size: 14px;
-}
-
-.btn {
-  display: block;
-  margin:5% ;
-  padding: 12px 30px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.25s ease;
-}
-
-.btn:hover {
-  background-color: #45a049;
-}
-
-#resultTableContainer {
-  margin-top: 30px;
-  overflow-x: auto;
-}
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 25px;
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 14px;
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.table thead {
-  background-color: #4CAF50;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.table th,
-.table td {
-  padding: 12px 16px;
-  text-align: left;
-}
-
-.table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.table tbody tr:hover {
-  background-color: #f1f7f2;
-  transition: background-color 0.2s ease;
-}
-
-/* For error tables (if iserror = true, you can add .error-table) */
-.table.error-table thead {
-  background-color: #d9534f;
-}
-
-.table.error-table tbody tr:hover {
-  background-color: #f8d7da;
-}
-
-</style>
+  <script src="./script/axios.min.js"></script>
+  <script src="./script/index.js" type="module"></script>
+</body>
 </html>
