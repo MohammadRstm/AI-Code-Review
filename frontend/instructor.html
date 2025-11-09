@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Instructor Code Review</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 25px;
+      border-collapse: collapse;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #reviewForm {
+      display: none;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      margin-bottom: 10px;
+    }
+
+    select {
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    pre {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Instructor Review Dashboard</h2>
+  <button id="loadCodesBtn" class="btn">Load Submitted Codes</button>
+
+  <div id="codeListContainer"></div>
+
+  <!-- Review Form -->
+  <div id="reviewForm">
+    <h3>Review Code</h3>
+    <pre id="codeDisplay"></pre>
+
+    <label>Issue:</label><br>
+    <textarea id="issueText" rows="3" placeholder="Describe the issue..."></textarea><br>
+
+    <label>Suggestion:</label><br>
+    <textarea id="suggestionText" rows="3" placeholder="Provide a suggestion..."></textarea><br>
+
+    <label>Severity:</label>
+    <select id="severitySelect">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select><br><br>
+
+    <button id="submitReviewBtn" class="btn">Submit Review</button>
+  </div>
+
+  <script src="./script/axios.min.js"></script>
+  <script>
+    let selectedCodeId = null;
+
+    document.getElementById("loadCodesBtn").addEventListener("click", async () => {
+      try {
+        const res = await axios.get("http://localhost/AI-Code-Review/server/apis/get_codes.php");
+        const codes = res.data;
+
+        let html = `
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Code Snippet</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+
+        codes.forEach(c => {
+          html += `
+            <tr>
+              <td>${c.id}</td>
+              <td>${c.username || "Anonymous"}</td>
+              <td><pre>${c.code.substring(0, 80)}...</pre></td>
+              <td>${c.created_at}</td>
+              <td><button class="btn" onclick="openReview(${c.id}, \`${encodeURIComponent(c.code)}\`)">Review</button></td>
+            </tr>
+          `;
+        });
+
+        html += "</tbody></table>";
+        document.getElementById("codeListContainer").innerHTML = html;
+
+      } catch (err) {
+        console.error(err);
+        alert("Failed to load submitted codes.");
+      }
+    });
+
+    // Open review form
+    function openReview(id, code) {
+      selectedCodeId = id;
+      const decodedCode = decodeURIComponent(code);
+      document.getElementById("codeDisplay").textContent = decodedCode;
+      document.getElementById("reviewForm").style.display = "block";
+    }
+
+    // Submit review
+    document.getElementById("submitReviewBtn").addEventListener("click", async () => {
+      if (!selectedCodeId) return alert("No code selected!");
+
+      const issue = document.getElementById("issueText").value.trim();
+      const suggestion = document.getElementById("suggestionText").value.trim();
+      const severity = document.getElementById("severitySelect").value;
+
+      if (!issue || !suggestion) {
+        alert("Please fill in both issue and suggestion.");
+        return;
+      }
+
+      try {
+        await axios.post("http://localhost/AI-Code-Review/server/apis/submit_review.php", {
+          code_id: selectedCodeId,
+          issue: issue,
+          suggestion: suggestion,
+          severity: severity
+        });
+
+        alert("Review submitted successfully!");
+        document.getElementById("reviewForm").style.display = "none";
+      } catch (err) {
+        console.error(err);
+        alert("Error submitting review.");
+      }
+    });
+  </script>
+</body>
+</html>
