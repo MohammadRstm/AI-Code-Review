@@ -1,8 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: *"); 
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); 
-header("Access-Control-Allow-Headers: Content-Type");
-
+include "../utils/headers.php";
 include "../services/handleRequestError.php";
 include "../services/callOpenAI.php";
 include_once "../utils/logMessage.php";
@@ -28,7 +25,6 @@ if(!isset($data["code"]) && !isset($_FILES["file"])){
     $response = reviewCode($code);
 }
 
-header('Content-Type: application/json');
 if(isset($response["error"])){
     logMessage("FAILED TO GET A CORRECT AI RESPONSE, ABORTING...");
     echo json_encode(["error" => "FAILED TO REVIEW CODE : ". $response["error"]]);
