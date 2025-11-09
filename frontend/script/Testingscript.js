@@ -1,23 +1,6 @@
-// class senddate{
-//     constructor(filename,code,language){
-//         this.filename=filename;
-//         this.code=code;
-//         this.language=language;
-//     }
-// }
-//const case1 =new senddate(null,"def process_users(users):\n    for user in users:  # correct loop\n        print(user['name']  # missing closing parenthesis\n        if user['age'] > 18\n            print('Adult')  # missing colon\n        else\n            print('Minor')\n    data = []\n    for i in range(len(users)+1):  # off-by-one error\n        data[i] = users[i]  # index assignment error\n    return data\n\nresult = process_users('not a list')  # passing string instead of list",null);
-// const case2=new senddate(null,"x = 5\nif x = 5:  # assignment instead of comparison\n    print('x is five')\nelse\n    print('x is not five'  # missing closing parenthesis"
-// ,null);
-// const case3=new senddate(null,"numbers = [1,2,3,4,5]\nsum = 0\nfor i in range(len(numbers)):  # using index unnecessarily\n    sum += numbers[i]\nprint('Sum:', sum)"
-// ,null);
-// const case4=new senddate(null,"def add_numbers(a, b):\n    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n        raise ValueError('Both inputs must be numbers')\n    return a + b\n\ntry:\n    result = add_numbers(5, 10)\n    print('Result:', result)\nexcept Exception as e:\n    print('Error:', e)"
-// ,null);
-// const case5=new senddate(null,   "def is_even(n):\n    if n % 2 == 1:\n        return True  # logic is wrong, should return False\n    return False\n\nprint(is_even(4))  # returns False incorrectly"
-// ,null)
-// const case6=new senddate(null,null,null);
-// const case7 =new senddate(null,"",null);
-// const cases=[case1,case2,case3,case4,case5,case6,case7]
-
+// ============================
+// Test Cases
+// ============================
 const testCodes = [
   {
     title: "Small Python code with many syntax and logic errors",
@@ -212,137 +195,158 @@ public class Calculator {
     expectedResults: []
   }
 ];
+
 const BASE_URL = "http://localhost:8080/AI-Code-Review/server/apis";
 
-class TestAiReviewer{
+// ============================
+// Test Class
+// ============================
+class TestAiReviewer {
+  async apiCall(code) {
+    try {
+      const response = await axios.post(`${BASE_URL}/review.php`, { code });
+      this.response = response.data;
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 
-    async apiCall(code){
-        try{
-            const response = await axios.post(`${BASE_URL}/review.php`, { code });
-            this.response = response.data;
-        }catch(err){
-            console.log(err.message);
+  initiateTesting() {
+    const testList = [];
+    let message = "";
+
+    testCodes.forEach((t, index) => {
+      message = "";
+      this.apiCall(t.code);
+
+      let errorMessage = this.validateResponseStructure();
+
+      if (errorMessage !== "") {
+        message = "incorrect structure | " + errorMessage;
+      } else {
+        errorMessage = this.validateExpectedAnwer(t);
+        if (errorMessage !== "") {
+          message = "Unexpected answer | " + errorMessage;
+        } else {
+          message = "passed";
         }
-    };
+      }
 
-    initiateTesting(){
-        testCodes.forEach((t , index) =>{
-            console.log("Test "+index + " | " +t.title);
-            this.apiCall(t.code);
-            let errorMessage = this.validateResponseStructure();
-            if(errorMessage != ""){
-                console.log("FAILED : INCORECT STRUCTURE |" + errorMessage + "\n");
-            }else{
-                errorMessage = this.validateExpectedAnwer(t);
-                if(errorMessage != ""){
-                    console.log("FAILED : UNEXPECTED RESPONSE | " + errorMessage + "\n");
-                }else{
-                    console.log("PASSED\n");
-                }
+      testList.push({
+        index: index,
+        title: t.title,
+        message: message
+      });
+    });
 
-            }
-        });
-    };
+    return testList;
+  }
 
-    validateResponseStructure() {
-        /*  
-            Requred Structure:
-            [
-                {"severity": "..." , "issue" : "..." , "suggestion": "..."},
-                {"severity": "..." , "issue" : "..." , "suggestion": "..."},
-                {"severity": "..." , "issue" : "..." , "suggestion": "..."},
-                ...,
-                "file" : null || "file name"
-            ]
-        */
+  validateResponseStructure() {
+    const response = this.response;
+    if (!response) return "Response is empty or undefined.";
 
-        // the response should already be stored in this.response
-        const response = this.response;
-        if (!response) return "Response is empty or undefined.";
-
-        // response must be an object
-        if (typeof response !== "object" || Array.isArray(response)) {
-            return "Response is not a valid object.";
-        }
-
-        // file field should exist
-        if (!response.hasOwnProperty("file")) {
-            return "Missing 'file' field.";
-        }
-
-        // file must be either null or a string
-        if (response.file !== null && typeof response.file !== "string") {
-            return "'file' must be null or a string.";
-        }
-
-        // issues field must exist
-        if (!response.hasOwnProperty("issues")) {
-            return "Missing 'issues' field.";
-        }
-
-        // issues must be an array
-        if (!Array.isArray(response.issues)) {
-            return "'issues' must be an array.";
-        }
-
-        // each issue must be a valid object with correct types
-        for (let i = 0; i < response.issues.length; i++) {
-            const issue = response.issues[i];
-            if (typeof issue !== "object" || Array.isArray(issue)) {
-                return `Issue #${i} is not a valid object.`;
-            }
-
-            const requiredFields = ["severity", "issue", "suggestion"];
-            for (const field of requiredFields) {
-                if (!issue.hasOwnProperty(field)) {
-                    return `Issue #${i} missing field '${field}'.`;
-                }
-                if (typeof issue[field] !== "string") {
-                    return `Field '${field}' in issue #${i} must be a string.`;
-                }
-            }
-        }
-
-        // passed all checks
-        return "";
+    if (typeof response !== "object" || Array.isArray(response)) {
+      return "Response is not a valid object.";
     }
 
-   validateExpectedAnwer(testCase) {
-        const { expectedResults } = testCase;
-        const actual = this.response.issues;
-
-        // if both empty -> success
-        if (expectedResults.length === 0 && actual.length === 0) return "";
-
-        // if expected empty but actual has issues -> check if issues are of low severity, if not -> fail
-        if (expectedResults.length === 0 && actual.length > 0){
-            let checkLow = true;
-            actual.forEach(i => {if(i.issue != "low") checkLow = false; });
-            if(!checkLow)
-                return "Expected no issues but got some.";
-        }
-            
-
-        // if expected some but got none -> fail
-        if (expectedResults.length > 0 && actual.length === 0)
-            return "Expected issues but got none.";
-
-        // compare severity balance
-        const expectedHighs = expectedResults.filter(i => i.severity === "high").length;
-        const actualHighs = actual.filter(i => i.severity === "high").length;
-
-        if (Math.abs(expectedHighs - actualHighs) > 1)
-            return "Mismatch in severity distribution (too few/many high-severity issues).";
-
-        return ""; // passed
+    if (!response.hasOwnProperty("file")) {
+      return "Missing 'file' field.";
     }
+
+    if (response.file !== null && typeof response.file !== "string") {
+      return "'file' must be null or a string.";
+    }
+
+    if (!response.hasOwnProperty("issues")) {
+      return "Missing 'issues' field.";
+    }
+
+    if (!Array.isArray(response.issues)) {
+      return "'issues' must be an array.";
+    }
+
+    for (let i = 0; i < response.issues.length; i++) {
+      const issue = response.issues[i];
+      if (typeof issue !== "object" || Array.isArray(issue)) {
+        return `Issue #${i} is not a valid object.`;
+      }
+
+      const requiredFields = ["severity", "issue", "suggestion"];
+      for (const field of requiredFields) {
+        if (!issue.hasOwnProperty(field)) {
+          return `Issue #${i} missing field '${field}'.`;
+        }
+        if (typeof issue[field] !== "string") {
+          return `Field '${field}' in issue #${i} must be a string.`;
+        }
+      }
+    }
+
+    return "";
+  }
+
+  validateExpectedAnwer(testCase) {
+    const { expectedResults } = testCase;
+    const actual = this.response.issues;
+
+    if (expectedResults.length === 0 && actual.length === 0) return "";
+
+    if (expectedResults.length === 0 && actual.length > 0) {
+      let checkLow = true;
+      actual.forEach(i => {
+        if (i.issue !== "low") checkLow = false;
+      });
+      if (!checkLow) return "Expected no issues but got some.";
+    }
+
+    if (expectedResults.length > 0 && actual.length === 0)
+      return "Expected issues but got none.";
+
+    const expectedHighs = expectedResults.filter(i => i.severity === "high").length;
+    const actualHighs = actual.filter(i => i.severity === "high").length;
+
+    if (Math.abs(expectedHighs - actualHighs) > 1)
+      return "Mismatch in severity distribution (too few/many high-severity issues).";
+
+    return "";
+  }
 }
 
+// ============================
+// UI Handling
+// ============================
 const test = new TestAiReviewer();
 
+function createANdFullTable() {
+  let tableHtml = `
+    <table>
+      <thead>
+        <tr>
+          <th>Test Number</th>
+          <th>Title</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
 
+  const testList = test.initiateTesting();
+  testList.forEach(element => {
+    tableHtml += `
+      <tr>
+        <td>${element.index}</td>
+        <td>${element.title}</td>
+        <td><pre>${element.message}</pre></td>
+      </tr>
+    `;
+  });
 
-TestingBtn=document.getElementById("TestingBtn");
-TestingBtn.addEventListener("click",()=>{
-    test.initiateTesting();
-})
+  tableHtml += "</tbody></table>";
+  document.getElementById("tableContainer").innerHTML = tableHtml;
+}
+
+const Testingbtn = document.getElementById("Testingbtn");
+Testingbtn.addEventListener("click", () => {
+  createANdFullTable();
+});
