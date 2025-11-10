@@ -43,16 +43,35 @@ async function handleclickbutton() {
 
   validTableSection.innerHTML = "";
 
-  if (validatelist.length > 0) {
-    createtable(validatelist, ["Severity", "Issue", "Suggestion"], false);
+  if (!istext && file) { 
+    const fileNameDisplay = document.createElement("p");
+    fileNameDisplay.textContent = `File: ${file.name}`;
+    fileNameDisplay.style.fontWeight = "bold";
+    fileNameDisplay.style.marginBottom = "1rem";
+    validTableSection.appendChild(fileNameDisplay);
   }
 
-  if (errorlist.length > 0) {
-    createtable(errorlist, ["Errors"], true);
+  if (validatelist.length === 0 && errorlist.length === 0) {
+    const noIssuesMsg = document.createElement("p");
+    noIssuesMsg.textContent = "No issues found in the code!";
+    noIssuesMsg.style.textAlign = "center";
+    noIssuesMsg.style.fontWeight = "bold";
+    noIssuesMsg.style.color = "green";
+    validTableSection.appendChild(noIssuesMsg);
+  } else {
+    if (validatelist.length > 0) {
+      createtable(validatelist, ["Severity", "Issue", "Suggestion"], false);
+    }
+
+    if (errorlist.length > 0) {
+      createtable(errorlist, ["Errors"], true);
+    }
   }
+
 }
 
 function createtable(datalist, headlist, iserror) {
+
   const table = document.createElement("table");
   table.className = "table";
 
@@ -89,6 +108,7 @@ function createtable(datalist, headlist, iserror) {
   const comparisonButton = document.createElement("button");
   comparisonButton.id = "comparisonButton";
   comparisonButton.className = "btn";
+  comparisonButton.style.marginTop = "3rem";
   comparisonButton.textContent = "Compare Response to Human";
 
   validTableSection.appendChild(comparisonButton);
@@ -97,54 +117,55 @@ function createtable(datalist, headlist, iserror) {
 validTableSection.addEventListener("click", async (event) => {
   const target = event.target;
 
-  if (target && target.id === "comparisonButton") {// compare button is clicked
-    try{
-      if(currentCode === ""){// doesn't support files yet
-        alert("Please enter your code in the text box");
-        return;
-      }
-      const result = await axios.post(`${BASE_URL}/humanToAiComparison.php` , {
-        code : currentCode,
-      });
-      const data = result.data;
-      if (!data || data.error || data.length === 0) {
+    if (target && target.id === "comparisonButton") {// compare button is clicked
+      try{
+        if(currentCode === ""){// doesn't support files yet
+          alert("Please enter your code in the text box");
+          return;
+        }
+        const result = await axios.post(`${BASE_URL}/humanToAiComparison.php` , {
+          code : currentCode,
+        });
+        const data = result.data;
+        const reviews = Array.isArray(data) ? data : data.reviews || [];
+      if (!reviews || reviews.length === 0) {
         alert("No human reviews found for this code.");
         return;
       }
 
-      let html = `
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Severity</th>
-              <th>Issue</th>
-              <th>Suggestion</th>
-            </tr>
-          </thead>
-          <tbody>
-      `;
-      data.forEach(hr => {
+        let html = `<h1> Human Response </h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Severity</th>
+                <th>Issue</th>
+                <th>Suggestion</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+      reviews.forEach(hr => {
         html += `
           <tr>
-            <td>${hr.sevirity || "N/A"}</td>
+            <td>${hr.sevirity || hr.severity || "N/A"}</td>
             <td>${hr.issue || "N/A"}</td>
             <td>${hr.suggestion || "N/A"}</td>
           </tr>
         `;
       });
 
-      html += `
-          </tbody>
-        </table>
-      `;
-      humanReviewTable.innerHTML = html;
-    }catch(err){
-      console.log(err);
-      alert("Server error, please try again");
+        html += `
+            </tbody>
+          </table>
+        `;
+        humanReviewTable.innerHTML = html;
+      }catch(err){
+        console.log(err);
+        alert("Server error, please try again");
+      }
+      
     }
-    
-  }
-});
+  });
 
 txtInputCodeElem.addEventListener("input", () => {
   fileInput.disabled = txtInputCodeElem.value.trim().length > 0;
@@ -153,15 +174,18 @@ txtInputCodeElem.addEventListener("input", () => {
 fileInput.addEventListener("change", () => {
   txtInputCodeElem.disabled = fileInput.files.length > 0;
 })
+
 btngo.addEventListener("click", handleclickbutton);
 
 clearBtn.addEventListener("click", () => {
   txtInputCodeElem.value = "";
   fileInput.value = "";
   validTableSection.innerHTML = "";
+  humanReviewTable.innerHTML = "";
   fileInput.disabled = false;
   txtInputCodeElem.disabled = false;
 });
+
 async function initilCall(code, file, istext) {
   try {
     let result = null;

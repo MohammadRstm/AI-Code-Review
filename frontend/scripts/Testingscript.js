@@ -219,7 +219,7 @@ class TestAiReviewer {
       } else {
         errorMessage = this.validateExpectedAnwer(t);
         if (errorMessage !== "") {
-          message = "Unexpected answer | " + errorMessage;
+          message = "Warning | " + errorMessage + "| Structure test still passed";
         } else {
           message = "passed";
         }

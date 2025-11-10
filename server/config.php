@@ -1,7 +1,25 @@
 <?php
 define("MAX_Tokens" , 300);
 define("GPT_VER" , "gpt-3.5-turbo");
-define("OPEN_AI_KEY" , "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");
+define("OPEN_AI_KEY" , "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");
 define("ALLOWED_SEVERITIES" , ["high","medium","low"]);
-define("LANGAUGES" , ["php" , "C" , "C#" , "python" ,"html" , "css" , "js" , "C++"]);
+define("LANGAUGES", [
+    "PHP", 
+    "C", 
+    "C++", 
+    "C#", 
+    "Python", 
+    "Java", 
+    "JavaScript", 
+    "TypeScript", 
+    "Go", 
+    "Rust", 
+    "Kotlin", 
+    "Swift", 
+    "Ruby", 
+    "CSS", 
+    "SQL", 
+    "R"
+]);
+
 ?>

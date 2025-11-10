@@ -26,8 +26,9 @@ if (!empty($data["code"]) && !empty($_FILES["file"])) {
 
 if (!empty($_FILES["file"]) && $_FILES["file"]["error"] === UPLOAD_ERR_OK) {
     $fileCode = file_get_contents($_FILES["file"]["tmp_name"]);
-    $response = reviewCode($fileCode);
     $fileName = $_FILES["file"]["name"];
+    $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    $response = reviewCode($fileCode , $fileExtension);
 }else if (!empty($data["code"])) {
     $response = reviewCode($data["code"]);
 }

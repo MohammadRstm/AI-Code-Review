@@ -22,10 +22,9 @@ function validateStructure($response) {
     if (!is_array($response)) {
         return "Response is not an array or object";
     }
-
-    // if response is empty array, allow --> no errors
-    if (count($response) === 0) {
-        return null;
+    // allow no error cases 
+    if (empty($response) || count($response) === 0) {
+        return null; // valid case
     }
 
     // incase ai returns only one object wrap it in array for uniform processing
@@ -57,7 +56,7 @@ function validateStructure($response) {
 
     return null;// no errors
 }
-function reviewCode($code , $retry = 0 , $error = null , $previousResponse = null){
+function reviewCode($code ,$fileExtension = null, $retry = 0 , $error = null , $previousResponse = null){
     // to avoid infinite recursion
     if($retry > 4) return ["error" => "Failed to receive correct structure from AI"];
     // generate instruction
@@ -66,11 +65,14 @@ function reviewCode($code , $retry = 0 , $error = null , $previousResponse = nul
         You are strictly a code reviewer. I'm going to give you a code snippet. 
         Read it carefully, find issues, and return an array of JSON object(s) with these exact fields:
         severity, issue, suggestion.
-    
+        
         Constraints:
         - The issue and suggestion fields must not be too detailed, just an overall idea.
         - The severity must be one of: 'high', 'medium', or 'low'.
-    
+
+        if you find no errors in the code then return an empty array:
+        []
+
         Code:
         $code
         Return only the array of JSON object(s), with no explanation or formatting.
@@ -85,6 +87,9 @@ function reviewCode($code , $retry = 0 , $error = null , $previousResponse = nul
         - The issue and suggestion fields must not be too detailed, just an overall idea.
         - The severity must be one of: 'high', 'medium', or 'low'.
 
+        if you find no errors in the code then return an empty array:
+        []
+
         Code :
         $code
         Only return the array of JSON object(s), with no explanation or formatting.
@@ -98,6 +103,8 @@ function reviewCode($code , $retry = 0 , $error = null , $previousResponse = nul
         EOD;
     }
 
+    if($fileExtension != null)
+        $instruction .= "The extension of the file of which this code came from is .$fileExtension";
     // call api
     $response = requestOpenAi($instruction);
     $responseData = json_decode($response , true);
@@ -111,7 +118,7 @@ function reviewCode($code , $retry = 0 , $error = null , $previousResponse = nul
     if($error != null){
         logMessage("VALIDATION ERROR: $error \n RESPONSE: " . json_encode($parsedContent));
         $previousEncodedResponse = json_encode($parsedContent , JSON_UNESCAPED_UNICODE);// return to json so AI can see response clearly
-        return reviewCode($code ,  $retry + 1 , $error , $previousEncodedResponse);
+        return reviewCode($code , $fileExtension, $retry + 1 , $error , $previousEncodedResponse);
     }else{// success
         logMessage("SUCCESSFUL REVIEW: " . json_encode($parsedContent));
         return $parsedContent;         

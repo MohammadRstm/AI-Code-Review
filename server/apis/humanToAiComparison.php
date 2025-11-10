@@ -21,16 +21,19 @@ while($row = $results->fetch_assoc()){
     $codeCases[] = $row;
 }
 
+
 $result_id = matchCodeToCase($data["code"] , $codeCases);
+logMessage("Resultant ID $result_id");
 
 // fetch human reviews
 if($result_id != null){
+    $casted_result_id = (int)$result_id;
     $sql = "SELECT issue , suggestion , sevirity
             FROM humanReviews
             WHERE code_id = ?";
     
     $query = $conn->prepare($sql);query: 
-    $query->bind_param("s",$result_id);
+    $query->bind_param("i",$casted_result_id);
     $query->execute();
     
     $humanReviewResults = $query->get_result();

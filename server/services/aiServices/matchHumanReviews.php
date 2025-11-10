@@ -8,33 +8,35 @@ function validIdResult($content){
         return false;
     }
     // can be null
-    if(!$content["id"]){
+     if ($content["id"] === null) {
         return true;
     }
-    if(!is_string($content["id"])){
+    if(!is_string($content["id"]) &&  !is_int($content["id"])){
         return false;
     }
 
     return true;
 }
 
-function matchCodeToCase($code , $savedCases){
+function matchCodeToCase($code , $savedCases , $retry = 0){
     $parsedCodeCases = json_encode($savedCases);
     $instruction = <<<EOD
-    I want you to checkout this code:
-    $code
-    I want you to find in the following list of codes, one that matches the same case as the code above.
-    The code above may contain an error or may not.
-    You have to try and find a code in the following list that containes the same idea of the error and give me 
-    its corresponding id in the list.
-    I don't want any extra explanation just give me the resultent id if you find it. if you don't then return null.
-    It's very important that you either return the id or null and nothing else.
-    The list of codes & their ids:
-    $parsedCodeCases
-    The result I'm expecting from you is a json object like this:
-    {
-        "id" : "id value (if you find a match) || null (if you don't find a match)"
-    }
+        You are a strict code matching assistant. Follow these rules exactly:
+        1. First, check if the code below matches **exactly** any code in the given list. If you find an exact match, return its corresponding id immediately.
+        2. If no exact match is found, try to find a code that has a **similar error or idea** and return its id.
+        3. If no code matches even by similarity, return null.
+        4. Do NOT add any explanation, commentary, or formatting. Only return the JSON object exactly as specified.
+
+        Here is the code to check:
+        $code
+
+        The list of codes with their ids:
+        $parsedCodeCases
+
+        Return only a JSON object in this format:
+        {
+            "id": "id value if a match is found, or null if no match is found"
+        }
     EOD;
 
     $results = requestOpenAi($instruction);
@@ -45,6 +47,8 @@ function matchCodeToCase($code , $savedCases){
     logMessage("RAW Human Review CONTENT : " . print_r($content, true));
     if($content && validIdResult($content)){
         return $content["id"];
+    }else if($retry < 4){
+        return matchCodeToCase($code , $savedCases, $retry + 1);
     }else{
         return null;// ai failed to find a match
     }
