@@ -19,6 +19,7 @@ function validIdResult($content){
 }
 
 function matchCodeToCase($code , $savedCases){
+    $parsedCodeCases = json_encode($savedCases);
     $instruction = <<<EOD
     I want you to checkout this code:
     $code
@@ -29,10 +30,10 @@ function matchCodeToCase($code , $savedCases){
     I don't want any extra explanation just give me the resultent id if you find it. if you don't then return null.
     It's very important that you either return the id or null and nothing else.
     The list of codes & their ids:
-    $savedCases
+    $parsedCodeCases
     The result I'm expecting from you is a json object like this:
     {
-        "id" : "id value || null"
+        "id" : "id value (if you find a match) || null (if you don't find a match)"
     }
     EOD;
 
@@ -43,7 +44,7 @@ function matchCodeToCase($code , $savedCases){
     $content = json_decode($contentString, true);
     logMessage("RAW Human Review CONTENT : " . print_r($content, true));
     if($content && validIdResult($content)){
-        return $content;
+        return $content["id"];
     }else{
         return null;// ai failed to find a match
     }

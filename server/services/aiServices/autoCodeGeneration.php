@@ -30,7 +30,6 @@ function generateCode($language){
         "code" : "...actual code..."
     }
     I only want you to give me the json object directly with no extra explanation or formatting
-    just the block of code
     EOD;
 
     $results = requestOpenAi($instruction);
@@ -40,7 +39,7 @@ function generateCode($language){
     $content = json_decode($contentString, true);
     logMessage("RAW CODE GENERATION CONTENT : " . print_r($content, true));
     if(validateCodeGeneration($content)){
-        return $content;
+        return $content["code"];
     }else{
         return null;
     }

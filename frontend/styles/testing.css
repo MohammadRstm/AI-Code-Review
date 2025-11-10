@@ -13,10 +13,10 @@ background-color: #45a049;
 }
 
 table {
-width: 100%;
-margin-top: 25px;
-border-collapse: collapse;
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 25px auto;
+  width: 80%; 
+  border-collapse: collapse;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 th, td {

@@ -3809,3 +3809,1147 @@ int main() {
 [2025-11-10 01:13:29] VALIDATION ERROR: Response not parsable to JSON 
  RESPONSE: null
 [2025-11-10 01:13:29] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 02:00:46] API KEY : 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
+[2025-11-10 02:00:46] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 02:00:47] RAW CONTENT: 
+[2025-11-10 02:00:47] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 02:00:47] API KEY : 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
+[2025-11-10 02:00:47] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 02:00:47] RAW CONTENT: 
+[2025-11-10 02:00:47] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 02:00:47] API KEY : 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
+[2025-11-10 02:00:48] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 02:00:48] RAW CONTENT: 
+[2025-11-10 02:00:48] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 02:00:48] API KEY : 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
+[2025-11-10 02:00:48] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 02:00:48] RAW CONTENT: 
+[2025-11-10 02:00:48] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 02:00:48] API KEY : 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
+[2025-11-10 02:00:49] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 02:00:49] RAW CONTENT: 
+[2025-11-10 02:00:49] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 02:00:49] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 02:25:20] API KEY : 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
+[2025-11-10 02:25:22] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 02:25:22] RAW CONTENT: 
+[2025-11-10 02:25:22] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 02:25:22] API KEY : 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
+[2025-11-10 02:25:22] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 02:25:22] RAW CONTENT: 
+[2025-11-10 02:25:22] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 02:25:22] API KEY : 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
+[2025-11-10 02:25:23] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 02:25:23] RAW CONTENT: 
+[2025-11-10 02:25:23] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 02:25:23] API KEY : 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
+[2025-11-10 02:25:24] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 02:25:24] RAW CONTENT: 
+[2025-11-10 02:25:24] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 02:25:24] API KEY : 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
+[2025-11-10 02:25:25] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 02:25:25] RAW CONTENT: 
+[2025-11-10 02:25:25] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 02:25:25] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:00:55] API KEY : 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
+[2025-11-10 03:00:55] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:00:55] RAW CONTENT: 
+[2025-11-10 03:00:55] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:00:55] API KEY : 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
+[2025-11-10 03:00:56] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:00:56] RAW CONTENT: 
+[2025-11-10 03:00:56] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:00:56] API KEY : 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
+[2025-11-10 03:00:57] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:00:57] RAW CONTENT: 
+[2025-11-10 03:00:57] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:00:57] API KEY : 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
+[2025-11-10 03:00:57] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:00:57] RAW CONTENT: 
+[2025-11-10 03:00:57] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:00:57] API KEY : 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
+[2025-11-10 03:00:58] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:00:58] RAW CONTENT: 
+[2025-11-10 03:00:58] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:00:58] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:17:17] API KEY : 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
+[2025-11-10 03:17:17] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:17:17] RAW CONTENT: 
+[2025-11-10 03:17:17] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:17:17] API KEY : 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
+[2025-11-10 03:17:18] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:17:18] RAW CONTENT: 
+[2025-11-10 03:17:18] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:17:18] API KEY : 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
+[2025-11-10 03:17:19] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:17:19] RAW CONTENT: 
+[2025-11-10 03:17:19] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:17:19] API KEY : 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
+[2025-11-10 03:17:19] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:17:19] RAW CONTENT: 
+[2025-11-10 03:17:19] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:17:19] API KEY : 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
+[2025-11-10 03:17:20] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:17:20] RAW CONTENT: 
+[2025-11-10 03:17:20] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:17:20] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:24:54] API KEY : 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
+[2025-11-10 03:24:55] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:24:55] RAW CONTENT: 
+[2025-11-10 03:24:55] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:24:55] API KEY : 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
+[2025-11-10 03:24:55] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:24:55] RAW CONTENT: 
+[2025-11-10 03:24:55] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:24:55] API KEY : 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
+[2025-11-10 03:24:56] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:24:56] RAW CONTENT: 
+[2025-11-10 03:24:56] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:24:56] API KEY : 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
+[2025-11-10 03:24:57] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:24:57] RAW CONTENT: 
+[2025-11-10 03:24:57] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:24:57] API KEY : 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
+[2025-11-10 03:24:57] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:24:57] RAW CONTENT: 
+[2025-11-10 03:24:57] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:24:57] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:24:57] API KEY : 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
+[2025-11-10 03:24:58] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:24:58] RAW CONTENT: 
+[2025-11-10 03:24:58] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:24:58] API KEY : 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
+[2025-11-10 03:24:58] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:24:58] RAW CONTENT: 
+[2025-11-10 03:24:58] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:24:58] API KEY : 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
+[2025-11-10 03:24:59] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:00] RAW CONTENT: 
+[2025-11-10 03:25:00] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:00] API KEY : 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
+[2025-11-10 03:25:00] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:00] RAW CONTENT: 
+[2025-11-10 03:25:00] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:00] API KEY : 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
+[2025-11-10 03:25:01] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:01] RAW CONTENT: 
+[2025-11-10 03:25:01] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:01] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:25:01] API KEY : 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
+[2025-11-10 03:25:02] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:02] RAW CONTENT: 
+[2025-11-10 03:25:02] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:02] API KEY : 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
+[2025-11-10 03:25:04] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:04] RAW CONTENT: 
+[2025-11-10 03:25:04] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:04] API KEY : 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
+[2025-11-10 03:25:05] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:05] RAW CONTENT: 
+[2025-11-10 03:25:05] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:05] API KEY : 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
+[2025-11-10 03:25:06] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:06] RAW CONTENT: 
+[2025-11-10 03:25:06] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:06] API KEY : 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
+[2025-11-10 03:25:07] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:07] RAW CONTENT: 
+[2025-11-10 03:25:07] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:07] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:25:07] API KEY : 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
+[2025-11-10 03:25:08] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:08] RAW CONTENT: 
+[2025-11-10 03:25:08] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:08] API KEY : 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
+[2025-11-10 03:25:08] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:08] RAW CONTENT: 
+[2025-11-10 03:25:08] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:08] API KEY : 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
+[2025-11-10 03:25:09] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:09] RAW CONTENT: 
+[2025-11-10 03:25:09] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:09] API KEY : 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
+[2025-11-10 03:25:10] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:10] RAW CONTENT: 
+[2025-11-10 03:25:10] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:10] API KEY : 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
+[2025-11-10 03:25:10] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:10] RAW CONTENT: 
+[2025-11-10 03:25:10] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:10] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:25:10] API KEY : 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
+[2025-11-10 03:25:11] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:11] RAW CONTENT: 
+[2025-11-10 03:25:11] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:11] API KEY : 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
+[2025-11-10 03:25:11] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:11] RAW CONTENT: 
+[2025-11-10 03:25:11] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:11] API KEY : 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
+[2025-11-10 03:25:12] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:12] RAW CONTENT: 
+[2025-11-10 03:25:12] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:12] API KEY : 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
+[2025-11-10 03:25:13] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:13] RAW CONTENT: 
+[2025-11-10 03:25:13] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:13] API KEY : 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
+[2025-11-10 03:25:13] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:13] RAW CONTENT: 
+[2025-11-10 03:25:13] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:13] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:25:13] API KEY : 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
+[2025-11-10 03:25:14] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:14] RAW CONTENT: 
+[2025-11-10 03:25:14] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:14] API KEY : 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
+[2025-11-10 03:25:14] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:14] RAW CONTENT: 
+[2025-11-10 03:25:14] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:14] API KEY : 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
+[2025-11-10 03:25:15] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:15] RAW CONTENT: 
+[2025-11-10 03:25:15] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:15] API KEY : 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
+[2025-11-10 03:25:16] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:16] RAW CONTENT: 
+[2025-11-10 03:25:16] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:16] API KEY : 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
+[2025-11-10 03:25:16] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:16] RAW CONTENT: 
+[2025-11-10 03:25:16] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:16] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:25:16] API KEY : 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
+[2025-11-10 03:25:17] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:17] RAW CONTENT: 
+[2025-11-10 03:25:17] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:17] API KEY : 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
+[2025-11-10 03:25:17] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:17] RAW CONTENT: 
+[2025-11-10 03:25:17] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:17] API KEY : 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
+[2025-11-10 03:25:18] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:18] RAW CONTENT: 
+[2025-11-10 03:25:18] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:18] API KEY : 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
+[2025-11-10 03:25:18] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:18] RAW CONTENT: 
+[2025-11-10 03:25:18] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:18] API KEY : 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
+[2025-11-10 03:25:19] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:19] RAW CONTENT: 
+[2025-11-10 03:25:19] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:19] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:25:19] API KEY : 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
+[2025-11-10 03:25:20] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:20] RAW CONTENT: 
+[2025-11-10 03:25:20] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:20] API KEY : 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
+[2025-11-10 03:25:20] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:20] RAW CONTENT: 
+[2025-11-10 03:25:20] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:20] API KEY : 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
+[2025-11-10 03:25:21] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:21] RAW CONTENT: 
+[2025-11-10 03:25:21] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:21] API KEY : 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
+[2025-11-10 03:25:21] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:21] RAW CONTENT: 
+[2025-11-10 03:25:21] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:21] API KEY : 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
+[2025-11-10 03:25:22] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:22] RAW CONTENT: 
+[2025-11-10 03:25:22] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:22] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:25:22] API KEY : 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
+[2025-11-10 03:25:22] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:22] RAW CONTENT: 
+[2025-11-10 03:25:22] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:22] API KEY : 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
+[2025-11-10 03:25:23] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:23] RAW CONTENT: 
+[2025-11-10 03:25:23] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:23] API KEY : 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
+[2025-11-10 03:25:23] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:23] RAW CONTENT: 
+[2025-11-10 03:25:23] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:23] API KEY : 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
+[2025-11-10 03:25:24] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:24] RAW CONTENT: 
+[2025-11-10 03:25:24] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:24] API KEY : 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
+[2025-11-10 03:25:24] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:24] RAW CONTENT: 
+[2025-11-10 03:25:24] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:24] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:25:24] API KEY : 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
+[2025-11-10 03:25:25] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:25] RAW CONTENT: 
+[2025-11-10 03:25:25] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:25] API KEY : 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
+[2025-11-10 03:25:25] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:25] RAW CONTENT: 
+[2025-11-10 03:25:25] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:25] API KEY : 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
+[2025-11-10 03:25:26] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:26] RAW CONTENT: 
+[2025-11-10 03:25:26] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:26] API KEY : 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
+[2025-11-10 03:25:27] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:27] RAW CONTENT: 
+[2025-11-10 03:25:27] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:27] API KEY : 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
+[2025-11-10 03:25:27] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:27] RAW CONTENT: 
+[2025-11-10 03:25:27] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:27] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:25:27] API KEY : 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
+[2025-11-10 03:25:28] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:28] RAW CONTENT: 
+[2025-11-10 03:25:28] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:28] API KEY : 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
+[2025-11-10 03:25:28] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:28] RAW CONTENT: 
+[2025-11-10 03:25:28] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:28] API KEY : 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
+[2025-11-10 03:25:29] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:29] RAW CONTENT: 
+[2025-11-10 03:25:29] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:29] API KEY : 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
+[2025-11-10 03:25:29] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:29] RAW CONTENT: 
+[2025-11-10 03:25:29] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:29] API KEY : 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
+[2025-11-10 03:25:30] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:30] RAW CONTENT: 
+[2025-11-10 03:25:30] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:30] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:25:30] API KEY : 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
+[2025-11-10 03:25:31] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:31] RAW CONTENT: 
+[2025-11-10 03:25:31] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:31] API KEY : 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
+[2025-11-10 03:25:31] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:31] RAW CONTENT: 
+[2025-11-10 03:25:31] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:31] API KEY : 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
+[2025-11-10 03:25:32] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:32] RAW CONTENT: 
+[2025-11-10 03:25:32] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:32] API KEY : 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
+[2025-11-10 03:25:33] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:33] RAW CONTENT: 
+[2025-11-10 03:25:33] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:33] API KEY : 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
+[2025-11-10 03:25:33] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:25:33] RAW CONTENT: 
+[2025-11-10 03:25:33] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:25:33] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:26:10] API KEY : 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
+[2025-11-10 03:26:10] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:26:10] RAW CONTENT: 
+[2025-11-10 03:26:10] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:26:10] API KEY : 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
+[2025-11-10 03:26:11] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:26:11] RAW CONTENT: 
+[2025-11-10 03:26:11] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:26:11] API KEY : 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
+[2025-11-10 03:26:11] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:26:11] RAW CONTENT: 
+[2025-11-10 03:26:11] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:26:11] API KEY : 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
+[2025-11-10 03:26:12] API KEY : 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
+[2025-11-10 03:26:12] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:26:12] RAW CONTENT: 
+[2025-11-10 03:26:12] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:26:12] API KEY : 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
+[2025-11-10 03:26:12] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:26:12] RAW CODE GENERATION CONTENT : 
+[2025-11-10 03:26:13] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:26:13] RAW CONTENT: 
+[2025-11-10 03:26:13] VALIDATION ERROR: Response not parsable to JSON 
+ RESPONSE: null
+[2025-11-10 03:26:13] FAILED TO GET A CORRECT AI RESPONSE, ABORTING...
+[2025-11-10 03:26:14] API KEY : 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
+[2025-11-10 03:26:15] RAW RESPONSE: {
+    "error": {
+        "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tgMA. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+[2025-11-10 03:26:15] RAW CODE GENERATION CONTENT : 

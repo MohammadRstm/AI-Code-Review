@@ -31,7 +31,7 @@ return;
 }
 
 try {
-await axios.post("http://localhost/AI-Code-Review/server/apis/saveHumanReview.php", {
+await axios.post(`${BASE_URL}/saveHumanReview.php`, {
 code : currentCode,
 humanReview :{
     issue: issue,

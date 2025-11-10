@@ -6,8 +6,11 @@ const humanReviewTable = document.getElementById("humanReviewTable");
 const clearBtn = document.getElementById("clearBtn");
 
 
-const url = "http://localhost:8080/AI-Code-Review/server/apis/review.php";
+const BASE_URL = "http://localhost/AI-Code-Review/server/apis";
 const allowed_severities = ["low", "medium", "high"];
+
+// for human to ai comparison
+let currentCode = "";
 
 async function handleclickbutton() {
   const text = txtInputCodeElem.value.trim();
@@ -25,9 +28,9 @@ async function handleclickbutton() {
   }
 
   if (file) istext = false;
+  else currentCode = text;// used later in human to ai comparison
 
   const [isexecuted, validatelist, errorlist, message] = await initilCall(
-    url,
     text,
     file,
     istext
@@ -88,11 +91,6 @@ function createtable(datalist, headlist, iserror) {
   comparisonButton.className = "btn";
   comparisonButton.textContent = "Compare Response to Human";
 
-  // add click listener if needed
-  comparisonButton.addEventListener("click", () => {
-    alert("Comparison logic will go here!");
-  });
-
   validTableSection.appendChild(comparisonButton);
 }
 
@@ -101,9 +99,15 @@ validTableSection.addEventListener("click", async (event) => {
 
   if (target && target.id === "comparisonButton") {// compare button is clicked
     try{
-      const result = await axios.post("http://localhost:8080/AI-Code-Review/server/apis/humanToAiComparison.php");
+      if(currentCode === ""){// doesn't support files yet
+        alert("Please enter your code in the text box");
+        return;
+      }
+      const result = await axios.post(`${BASE_URL}/humanToAiComparison.php` , {
+        code : currentCode,
+      });
       const data = result.data;
-      if (!data || data.length === 0) {
+      if (!data || data.error || data.length === 0) {
         alert("No human reviews found for this code.");
         return;
       }
@@ -122,9 +126,9 @@ validTableSection.addEventListener("click", async (event) => {
       data.forEach(hr => {
         html += `
           <tr>
-            <td>${hr.severity || "N/A"}</td>
-            <td>${hr.issue || "—"}</td>
-            <td>${hr.suggestion || "—"}</td>
+            <td>${hr.sevirity || "N/A"}</td>
+            <td>${hr.issue || "N/A"}</td>
+            <td>${hr.suggestion || "N/A"}</td>
           </tr>
         `;
       });
@@ -158,7 +162,7 @@ clearBtn.addEventListener("click", () => {
   fileInput.disabled = false;
   txtInputCodeElem.disabled = false;
 });
-async function initilCall(url, code, file, istext) {
+async function initilCall(code, file, istext) {
   try {
     let result = null;
     let isCorrectResponse = true;
@@ -166,9 +170,9 @@ async function initilCall(url, code, file, istext) {
     let validateList = [];
 
     if (istext) {
-      result = await PostText(url, code);
+      result = await PostText(code);
     } else {
-      result = await PostFile(url, file);
+      result = await PostFile(file);
     }
 
     const [isGeneralValid, message] = validateResponse(result);
@@ -187,20 +191,20 @@ async function initilCall(url, code, file, istext) {
   }
 }
 
-async function PostText(url, code) {
+async function PostText(code) {
   try {
-    const result = await axios.post(url, { code });
+    const result = await axios.post(`${BASE_URL}/review.php`, { code });
     return result;
   } catch (error) {
     return { error: error.message };
   }
 }
 
-async function PostFile(url, file) {
+async function PostFile(file) {
   try {
     const formdata = new FormData();
     formdata.append("file", file);
-    const response = await axios.post(url, formdata, {
+    const response = await axios.post(`${BASE_URL}/review.php`, formdata, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
