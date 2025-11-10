@@ -2,7 +2,9 @@ const txtInputCodeElem = document.getElementById("codeInput");
 const btngo = document.getElementById("submitBtn");
 const fileInput = document.getElementById("fileInput");
 const validTableSection = document.getElementById("resultTableContainer");
+const humanReviewTable = document.getElementById("humanReviewTable");
 const clearBtn = document.getElementById("clearBtn");
+
 
 const url = "http://localhost:8080/AI-Code-Review/server/apis/review.php";
 const allowed_severities = ["low", "medium", "high"];
@@ -51,41 +53,95 @@ function createtable(datalist, headlist, iserror) {
   const table = document.createElement("table");
   table.className = "table";
 
-
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
+
   headlist.forEach(h => {
     const th = document.createElement("th");
     th.textContent = h;
     headerRow.appendChild(th);
   });
+
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
-
   const tbody = document.createElement("tbody");
 
-  datalist.forEach((data, index) => {
+  datalist.forEach(data => {
     const row = document.createElement("tr");
 
-    
-      const cells = [data.severity, data.issue, data.suggestion];
-      cells.forEach(value => {
-        const td = document.createElement("td");
-        td.textContent = value || "";
-        row.appendChild(td);
-      });
-    
+    const cells = iserror ? [data.errors] : [data.severity, data.issue, data.suggestion];
+    cells.forEach(value => {
+      const td = document.createElement("td");
+      td.textContent = value || "";
+      row.appendChild(td);
+    });
 
     tbody.appendChild(row);
   });
 
   table.appendChild(tbody);
+  validTableSection.appendChild(table);
 
+  const comparisonButton = document.createElement("button");
+  comparisonButton.id = "comparisonButton";
+  comparisonButton.className = "btn";
+  comparisonButton.textContent = "Compare Response to Human";
 
-    validTableSection.appendChild(table);
-  
+  // add click listener if needed
+  comparisonButton.addEventListener("click", () => {
+    alert("Comparison logic will go here!");
+  });
+
+  validTableSection.appendChild(comparisonButton);
 }
+
+validTableSection.addEventListener("click", async (event) => {
+  const target = event.target;
+
+  if (target && target.id === "comparisonButton") {// compare button is clicked
+    try{
+      const result = await axios.post("http://localhost:8080/AI-Code-Review/server/apis/humanToAiComparison.php");
+      const data = result.data;
+      if (!data || data.length === 0) {
+        alert("No human reviews found for this code.");
+        return;
+      }
+
+      let html = `
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Severity</th>
+              <th>Issue</th>
+              <th>Suggestion</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+      data.forEach(hr => {
+        html += `
+          <tr>
+            <td>${hr.severity || "N/A"}</td>
+            <td>${hr.issue || "—"}</td>
+            <td>${hr.suggestion || "—"}</td>
+          </tr>
+        `;
+      });
+
+      html += `
+          </tbody>
+        </table>
+      `;
+      humanReviewTable.innerHTML = html;
+    }catch(err){
+      console.log(err);
+      alert("Server error, please try again");
+    }
+    
+  }
+});
+
 txtInputCodeElem.addEventListener("input", () => {
   fileInput.disabled = txtInputCodeElem.value.trim().length > 0;
 });
@@ -93,7 +149,6 @@ txtInputCodeElem.addEventListener("input", () => {
 fileInput.addEventListener("change", () => {
   txtInputCodeElem.disabled = fileInput.files.length > 0;
 })
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 btngo.addEventListener("click", handleclickbutton);
 
 clearBtn.addEventListener("click", () => {
@@ -103,7 +158,6 @@ clearBtn.addEventListener("click", () => {
   fileInput.disabled = false;
   txtInputCodeElem.disabled = false;
 });
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 async function initilCall(url, code, file, istext) {
   try {
     let result = null;
@@ -203,3 +257,4 @@ function validatEachItem(item, index) {
 
   return itemValide ? [true, item] : [false, itemError.join(", ")];
 }
+
