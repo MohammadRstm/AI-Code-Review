@@ -15,22 +15,32 @@ function validateCodeGeneration($content){
     return true;
 }
 
-function generateCode($language){
+function generateCode($language , $retry = 0){
     $instruction = <<<EOD
-    I want you to give me a code snippet of the $language language
-    I want the code to contain some error(s)
-    The errors can be:
-    -logical ones
-    -Syntax errors
-    -messy code (could be cleaner)
+    Generate a code snippet in the $language programming language.
+    The code must contain at least one error, which can be:
 
-    The structure you should give me is a json object with the code attribute only, its value is the actual code
-    so something like this
+    A syntax error
+
+    A logical error
+
+    Messy or poorly structured code (could be cleaner)
+
+    Output only a JSON object with a single attribute:
+    
     {
         "code" : "...actual code..."
     }
-    I only want you to give me the json object directly with no extra explanation or formatting
-    just the block of code
+    
+    Do not include any explanations, text, comments, or formatting outside this JSON.
+    Do not add comments in the code indicating where the errors are.
+    Each generated code snippet must be new, unique, and contain at least one error.
+    The JSON must be valid and parseable.
+    If you cannot generate the code, still return a JSON object with a "code" key and an empty string as the value:
+    {
+        "code" : ""
+    }
+    Important: Do not return anything except this JSON object, under any circumstances.
     EOD;
 
     $results = requestOpenAi($instruction);
@@ -40,7 +50,9 @@ function generateCode($language){
     $content = json_decode($contentString, true);
     logMessage("RAW CODE GENERATION CONTENT : " . print_r($content, true));
     if(validateCodeGeneration($content)){
-        return $content;
+        return $content["code"];
+    }else if($retry < 4){
+        return generateCode($language, $retry + 1);
     }else{
         return null;
     }

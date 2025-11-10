@@ -17,8 +17,13 @@ $query->execute();
 
 $code_id = $conn->insert_id;
 
+print_r($data["humanReview"]);
+
 // save human review(s) to that code 
 foreach($data["humanReview"] as $review){
+    if(!$review["issue"] || empty($review["issue"])){
+        $review["issue"] = "No issues"; // default
+    }
     $sql = "INSERT INTO humanReviews(code_id , sevirity , issue , suggestion) VALUES(?, ? , ? , ?)";
     $query = $conn->prepare($sql);
     $query->bind_param("isss" ,$code_id,$review["sevirity"],$review["issue"],$review["suggestion"]);

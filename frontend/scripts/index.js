@@ -2,10 +2,15 @@ const txtInputCodeElem = document.getElementById("codeInput");
 const btngo = document.getElementById("submitBtn");
 const fileInput = document.getElementById("fileInput");
 const validTableSection = document.getElementById("resultTableContainer");
+const humanReviewTable = document.getElementById("humanReviewTable");
 const clearBtn = document.getElementById("clearBtn");
 
-const url = "http://localhost:8080/AI-Code-Review/server/apis/review.php";
+
+const BASE_URL = "http://localhost/AI-Code-Review/server/apis";
 const allowed_severities = ["low", "medium", "high"];
+
+// for human to ai comparison
+let currentCode = "";
 
 async function handleclickbutton() {
   const text = txtInputCodeElem.value.trim();
@@ -23,9 +28,9 @@ async function handleclickbutton() {
   }
 
   if (file) istext = false;
+  else currentCode = text;// used later in human to ai comparison
 
   const [isexecuted, validatelist, errorlist, message] = await initilCall(
-    url,
     text,
     file,
     istext
@@ -38,54 +43,130 @@ async function handleclickbutton() {
 
   validTableSection.innerHTML = "";
 
-  if (validatelist.length > 0) {
-    createtable(validatelist, ["Severity", "Issue", "Suggestion"], false);
+  if (!istext && file) { 
+    const fileNameDisplay = document.createElement("p");
+    fileNameDisplay.textContent = `File: ${file.name}`;
+    fileNameDisplay.style.fontWeight = "bold";
+    fileNameDisplay.style.marginBottom = "1rem";
+    validTableSection.appendChild(fileNameDisplay);
   }
 
-  if (errorlist.length > 0) {
-    createtable(errorlist, ["Errors"], true);
+  if (validatelist.length === 0 && errorlist.length === 0) {
+    const noIssuesMsg = document.createElement("p");
+    noIssuesMsg.textContent = "No issues found in the code!";
+    noIssuesMsg.style.textAlign = "center";
+    noIssuesMsg.style.fontWeight = "bold";
+    noIssuesMsg.style.color = "green";
+    validTableSection.appendChild(noIssuesMsg);
+  } else {
+    if (validatelist.length > 0) {
+      createtable(validatelist, ["Severity", "Issue", "Suggestion"], false);
+    }
+
+    if (errorlist.length > 0) {
+      createtable(errorlist, ["Errors"], true);
+    }
   }
+
 }
 
 function createtable(datalist, headlist, iserror) {
+
   const table = document.createElement("table");
   table.className = "table";
 
-
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
+
   headlist.forEach(h => {
     const th = document.createElement("th");
     th.textContent = h;
     headerRow.appendChild(th);
   });
+
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
-
   const tbody = document.createElement("tbody");
 
-  datalist.forEach((data, index) => {
+  datalist.forEach(data => {
     const row = document.createElement("tr");
 
-    
-      const cells = [data.severity, data.issue, data.suggestion];
-      cells.forEach(value => {
-        const td = document.createElement("td");
-        td.textContent = value || "";
-        row.appendChild(td);
-      });
-    
+    const cells = iserror ? [data.errors] : [data.severity, data.issue, data.suggestion];
+    cells.forEach(value => {
+      const td = document.createElement("td");
+      td.textContent = value || "";
+      row.appendChild(td);
+    });
 
     tbody.appendChild(row);
   });
 
   table.appendChild(tbody);
+  validTableSection.appendChild(table);
 
+  const comparisonButton = document.createElement("button");
+  comparisonButton.id = "comparisonButton";
+  comparisonButton.className = "btn";
+  comparisonButton.style.marginTop = "3rem";
+  comparisonButton.textContent = "Compare Response to Human";
 
-    validTableSection.appendChild(table);
-  
+  validTableSection.appendChild(comparisonButton);
 }
+
+validTableSection.addEventListener("click", async (event) => {
+  const target = event.target;
+
+    if (target && target.id === "comparisonButton") {// compare button is clicked
+      try{
+        if(currentCode === ""){// doesn't support files yet
+          alert("Please enter your code in the text box");
+          return;
+        }
+        const result = await axios.post(`${BASE_URL}/humanToAiComparison.php` , {
+          code : currentCode,
+        });
+        const data = result.data;
+        const reviews = Array.isArray(data) ? data : data.reviews || [];
+      if (!reviews || reviews.length === 0) {
+        alert("No human reviews found for this code.");
+        return;
+      }
+
+        let html = `<h1> Human Response </h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Severity</th>
+                <th>Issue</th>
+                <th>Suggestion</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+      reviews.forEach(hr => {
+        html += `
+          <tr>
+            <td>${hr.sevirity || hr.severity || "N/A"}</td>
+            <td>${hr.issue || "N/A"}</td>
+            <td>${hr.suggestion || "N/A"}</td>
+          </tr>
+        `;
+      });
+
+        html += `
+            </tbody>
+          </table>
+        `;
+        humanReviewTable.innerHTML = html;
+      }catch(err){
+        console.log(err);
+        alert("Server error, please try again");
+      }
+      
+    }
+  });
+
 txtInputCodeElem.addEventListener("input", () => {
   fileInput.disabled = txtInputCodeElem.value.trim().length > 0;
 });
@@ -93,18 +174,19 @@ txtInputCodeElem.addEventListener("input", () => {
 fileInput.addEventListener("change", () => {
   txtInputCodeElem.disabled = fileInput.files.length > 0;
 })
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 btngo.addEventListener("click", handleclickbutton);
 
 clearBtn.addEventListener("click", () => {
   txtInputCodeElem.value = "";
   fileInput.value = "";
   validTableSection.innerHTML = "";
+  humanReviewTable.innerHTML = "";
   fileInput.disabled = false;
   txtInputCodeElem.disabled = false;
 });
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-async function initilCall(url, code, file, istext) {
+
+async function initilCall(code, file, istext) {
   try {
     let result = null;
     let isCorrectResponse = true;
@@ -112,9 +194,9 @@ async function initilCall(url, code, file, istext) {
     let validateList = [];
 
     if (istext) {
-      result = await PostText(url, code);
+      result = await PostText(code);
     } else {
-      result = await PostFile(url, file);
+      result = await PostFile(file);
     }
 
     const [isGeneralValid, message] = validateResponse(result);
@@ -133,20 +215,20 @@ async function initilCall(url, code, file, istext) {
   }
 }
 
-async function PostText(url, code) {
+async function PostText(code) {
   try {
-    const result = await axios.post(url, { code });
+    const result = await axios.post(`${BASE_URL}/review.php`, { code });
     return result;
   } catch (error) {
     return { error: error.message };
   }
 }
 
-async function PostFile(url, file) {
+async function PostFile(file) {
   try {
     const formdata = new FormData();
     formdata.append("file", file);
-    const response = await axios.post(url, formdata, {
+    const response = await axios.post(`${BASE_URL}/review.php`, formdata, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -203,3 +285,4 @@ function validatEachItem(item, index) {
 
   return itemValide ? [true, item] : [false, itemError.join(", ")];
 }
+

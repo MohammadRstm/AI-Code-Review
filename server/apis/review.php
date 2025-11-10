@@ -4,34 +4,42 @@ include "../utils/handleRequestError.php";
 include "../services/aiServices/codeReview.php";
 include_once "../utils/logMessage.php";
 
-// what we need to do next : 
-// create Human to AI comparison -- 
+$contentType = $_SERVER["CONTENT_TYPE"] ?? '';// detect if JSON or multipart/form-data
 
-
-$data = json_decode(file_get_contents('php://input'), true);// code snippet
-
-if(!isset($data["code"]) && !isset($_FILES["file"])){
-    logMessage("INVALID REQUEST | NO ARGUMENTS");
-    handleRequestError("You must atleast include either the file or the code snippet" , 401);
-}else if(isset($data["code"]) && isset($_FILES["file"])){
-    logMessage("INVALID REQUEST | TOO MANY ARGUMENTS");
-    handleRequestError("Both code snippet and code file can't be included, choose one at a time to review" , 401);
-}else if(isset($_FILES["file"]) && $_FILES["file"]["error"] === UPLOAD_ERR_OK){
-    $fileCode = file_get_contents($_FILES["file"]["tmp_name"]); 
-    $response = reviewCode( $fileCode);
-    $fileName = $_FILES["file"]["name"];
-}else if(isset($data["code"])){
-    $code = $data["code"];
-    $response = reviewCode($code);
+if (strpos($contentType, "application/json") !== false) {
+    $data = json_decode(file_get_contents("php://input"), true);
+} else {
+    $data = $_POST; // will be empty if only file is sent
 }
 
-if(isset($response["error"])){
+if (empty($data["code"]) && empty($_FILES["file"])) {
+    logMessage("INVALID REQUEST | NO ARGUMENTS");
+    handleRequestError("You must at least include either the file or the code snippet", 401);
+    exit;
+}
+
+if (!empty($data["code"]) && !empty($_FILES["file"])) {
+    logMessage("INVALID REQUEST | TOO MANY ARGUMENTS");
+    handleRequestError("Both code snippet and code file can't be included; choose one at a time", 401);
+    exit;
+}
+
+if (!empty($_FILES["file"]) && $_FILES["file"]["error"] === UPLOAD_ERR_OK) {
+    $fileCode = file_get_contents($_FILES["file"]["tmp_name"]);
+    $fileName = $_FILES["file"]["name"];
+    $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    $response = reviewCode($fileCode , $fileExtension);
+}else if (!empty($data["code"])) {
+    $response = reviewCode($data["code"]);
+}
+
+if (isset($response["error"])) {
     logMessage("FAILED TO GET A CORRECT AI RESPONSE, ABORTING...");
-    echo json_encode(["error" => "FAILED TO REVIEW CODE : ". $response["error"]]);
-}else{
+    echo json_encode(["error" => "FAILED TO REVIEW CODE: " . $response["error"]]);
+} else {
     echo json_encode([
         "issues" => $response,
-        "file" => (isset($fileName) ? $fileName : null)
+        "file" => $fileName ?? null
     ]);
 }
 ?>
