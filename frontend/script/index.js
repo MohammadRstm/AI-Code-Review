@@ -39,7 +39,7 @@ async function handleclickbutton() {
   validTableSection.innerHTML = "";
 
   if (validatelist.length > 0) {
-    createtable(validatelist, ["Severity", "Issue", "Suggestion"], false);
+    createtable(validatelist, ["Severity", "Issue", "Suggestion"]);
   }
 
   if (errorlist.length > 0) {
@@ -47,7 +47,7 @@ async function handleclickbutton() {
   }
 }
 
-function createtable(datalist, headlist, iserror) {
+function createtable(datalist, headlist) {
   const table = document.createElement("table");
   table.className = "table";
 
