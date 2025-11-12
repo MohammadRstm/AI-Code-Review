@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/styles.css"/>
+    <link rel="stylesheet" href="./styles/humanReview.css"/>
+    <title>Human Review</title>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html">AI Code Reviewer</a>
+      </div>
+      <nav class="header-nav">
+        <a href="humanReview.html">Human Review</a>
+        <a href="Testing.html">Ai-Tester</a>
+      </nav>
+    </div>
+  </header>
+
+  <h2>Instructor Review Dashboard</h2>
+  <div id="codeListContainer"></div>
+
+  <div id="reviewForm">
+    <h3 id="languageTitle"></h3>
+
+    <label for="issueText">Issue:</label><br>
+    <textarea id="issueText" rows="3" placeholder="Describe the issue..."></textarea><br>
+
+    <label for="severitySelect">Severity:</label>
+    <select id="severitySelect">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select><br><br>
+
+    <label for="suggestionText">Suggestion:</label><br>
+    <textarea id="suggestionText" rows="3" placeholder="Provide a suggestion..."></textarea><br>
+
+    <button id="submitReviewBtn" class="btn">Submit Review</button>
+  </div>
+
+  <script src="./scripts/axios.min.js"></script>
+  <script src="./scripts/humanReview.js"></script>
+</body>
+</html>

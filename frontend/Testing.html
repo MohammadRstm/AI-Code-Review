@@ -1,58 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Teasting</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 40px;
-      }
-
-      .btn {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-      }
-
-      .btn:hover {
-        background-color: #45a049;
-      }
-
-      table {
-        width: 100%;
-        margin-top: 25px;
-        border-collapse: collapse;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      th, td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: left;
-      }
-
-      th {
-        background-color: #4CAF50;
-        color: white;
-      }
-
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/styles.css"/>
+    <link rel="stylesheet" href="./styles/testing.css"/>
+    <title>AI Tester</title>
   </head>
 
   <body>
-    <h2>Hello on Testing </h2>
-    <button id="Testingbtn" class="btn">Testing</button>
-
+    <header class="site-header">
+      <div class="header-container">
+        <div class="logo">
+          <a href="index.html">AI Code Reviewer</a>
+        </div>
+        <nav class="header-nav">
+          <a href="humanReview.html">Human Review</a>
+          <a href="Testing.html">Ai-Tester</a>
+        </nav>
+      </div>
+    </header>
+   <div class="tester-container">
+    <h2>AI Tester</h2>
+    <button id="Testingbtn" class="btn">Commence Testing</button>
     <div id="tableContainer"></div>
-    <script src="./script/axios.min.js"></script>
-    <script src="./script/Testingscript.js"></script>
-    
+  </div>
+
+    <script src="./scripts/axios.min.js"></script>
+    <script src="./scripts/Testingscript.js"></script>
   </body>
 </html>

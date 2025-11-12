@@ -1,6 +1,3 @@
-// ============================
-// Test Cases
-// ============================
 const testCodes = [
   {
     title: "Small Python code with many syntax and logic errors",
@@ -196,11 +193,8 @@ public class Calculator {
   }
 ];
 
-const BASE_URL = "http://localhost:8080/AI-Code-Review/server/apis";
+const BASE_URL = "http://localhost/AI-Code-Review/server/apis";
 
-// ============================
-// Test Class
-// ============================
 class TestAiReviewer {
   async apiCall(code) {
     try {
@@ -211,36 +205,36 @@ class TestAiReviewer {
     }
   }
 
-  initiateTesting() {
+  async initiateTesting() {
     const testList = [];
-    let message = "";
 
-    testCodes.forEach((t, index) => {
-      message = "";
-      this.apiCall(t.code);
+    for (let index = 0; index < testCodes.length; index++) {
+      const t = testCodes[index];
+      await this.apiCall(t.code); // wait for API to finish
+      let message = "";
 
       let errorMessage = this.validateResponseStructure();
-
       if (errorMessage !== "") {
         message = "incorrect structure | " + errorMessage;
       } else {
         errorMessage = this.validateExpectedAnwer(t);
         if (errorMessage !== "") {
-          message = "Unexpected answer | " + errorMessage;
+          message = "Warning | " + errorMessage + "| Structure test still passed";
         } else {
           message = "passed";
         }
       }
 
       testList.push({
-        index: index,
+        index,
         title: t.title,
-        message: message
+        message,
       });
-    });
+    }
 
     return testList;
   }
+
 
   validateResponseStructure() {
     const response = this.response;
@@ -313,12 +307,13 @@ class TestAiReviewer {
   }
 }
 
-// ============================
-// UI Handling
-// ============================
 const test = new TestAiReviewer();
 
-function createANdFullTable() {
+async function createANdFillTable() {
+  document.getElementById("tableContainer").innerHTML = "<p>Running tests...</p>";
+
+  const testList = await test.initiateTesting();
+
   let tableHtml = `
     <table>
       <thead>
@@ -331,7 +326,6 @@ function createANdFullTable() {
       <tbody>
   `;
 
-  const testList = test.initiateTesting();
   testList.forEach(element => {
     tableHtml += `
       <tr>
@@ -346,7 +340,8 @@ function createANdFullTable() {
   document.getElementById("tableContainer").innerHTML = tableHtml;
 }
 
+
 const Testingbtn = document.getElementById("Testingbtn");
 Testingbtn.addEventListener("click", () => {
-  createANdFullTable();
+  createANdFillTable();
 });
